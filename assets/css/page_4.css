@@ -55,10 +55,16 @@ body {
   gap: 1rem;
 }
 
-.admin-title {
+.dashboard-title {
   color: var(--text-white);
   font-size: 1rem;
   font-weight: 500;
+  margin: 0;
+}
+
+.dashboard-subtitle {
+  color: var(--text-muted);
+  font-size: 0.875rem;
   margin: 0;
 }
 
@@ -272,11 +278,13 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .main-content {
+    padding: 1rem;
     flex-direction: column;
   }
   
   .sidebar {
     width: 100%;
+    margin-bottom: 1rem;
   }
   
   .sidebar-content {
