@@ -157,10 +157,10 @@ Desarrollado como parte del módulo de JavaScript para el sistema de gestión de
 
 ### 🚀 Integrantes del Equipo
 
-| **Desarrollador** |
-|:-----------------:|
-| **Daniel Tapias** |
-| **Emmanuel Perez** |
-| **Mateo Monsalve** |
-| **Mariana Restrepo** |
-| **Juan Carlos Balcero** |
+| | **Desarrollador** |
+|:-:|:-----------------:|
+|1| **Daniel Tapias** |
+|2| **Emmanuel Perez** |
+|3| **Mateo Monsalve** |
+|4| **Mariana Restrepo** |
+|5| **Juan Carlos Balcero** |
