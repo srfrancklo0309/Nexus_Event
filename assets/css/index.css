@@ -1,27 +1,4 @@
-/* Estilos personalizados para index.html */
-:root {
-  --primary-bg: #122118;
-  --secondary-bg: #264532;
-  --accent-green: #38e07b;
-  --text-white: #ffffff;
-  --text-muted: #96c5a9;
-  --border-color: #366348;
-  --header-bg: #1b3124;
-}
-
-body {
-  font-family: "Spline Sans", "Noto Sans", sans-serif;
-  background-color: var(--primary-bg);
-  color: var(--text-white);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.layout-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+/* Estilos específicos para index.html */
 
 /* Header */
 .navbar {
@@ -45,38 +22,6 @@ body {
 .navbar-item:hover {
   color: var(--text-white) !important;
   background-color: transparent !important;
-}
-
-.button.is-primary {
-  background-color: var(--accent-green);
-  color: var(--primary-bg);
-  border: none;
-  border-radius: 0.75rem;
-  font-weight: bold;
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  min-width: 84px;
-  height: 2.5rem;
-}
-
-.button.is-primary:hover {
-  background-color: var(--accent-green);
-  opacity: 0.9;
-}
-
-/* Main content */
-.main-content {
-  padding: 1.25rem 10rem;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.layout-content-container {
-  max-width: 960px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Featured events section */
@@ -146,36 +91,6 @@ body {
   max-width: 480px;
 }
 
-.field {
-  margin-bottom: 0.75rem;
-}
-
-.input, .textarea {
-  background-color: var(--secondary-bg);
-  border: none;
-  border-radius: 0.75rem;
-  color: var(--text-white);
-  font-size: 1rem;
-  padding: 1rem;
-  height: 3.5rem;
-  width: 100%;
-}
-
-.textarea {
-  min-height: 9rem;
-  resize: none;
-}
-
-.input::placeholder, .textarea::placeholder {
-  color: var(--text-muted);
-}
-
-.input:focus, .textarea:focus {
-  outline: none;
-  box-shadow: none;
-  border: none;
-}
-
 /* Footer */
 .footer {
   background-color: transparent;
@@ -222,10 +137,6 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .main-content {
-    padding: 1.25rem 1.5rem;
-  }
-  
   .navbar {
     padding: 0.75rem 1rem;
   }

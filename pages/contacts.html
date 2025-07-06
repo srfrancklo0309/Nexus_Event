@@ -12,7 +12,8 @@
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../css/page_2.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/contacts.css">
   </head>
   <body>
     <div class="layout-container">
@@ -25,7 +26,7 @@
                 <p class="dashboard-subtitle">Welcome back, Alex</p>
               </div>
               <div class="nav-menu">
-                <a class="nav-item active" href="#">
+                <a class="nav-item" href="./dashboard.html">
                   <div class="nav-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
                       <path
@@ -35,7 +36,7 @@
                   </div>
                   <span>Home</span>
                 </a>
-                <a class="nav-item" href="./page_4.html">
+                <a class="nav-item" href="./events.html">
                   <div class="nav-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
                       <path
@@ -45,7 +46,7 @@
                   </div>
                   <span>Events</span>
                 </a>
-                <a class="nav-item" href="./page_3.html">
+                <a class="nav-item" href="./suscriptions.html">
                   <div class="nav-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
                       <path
@@ -55,7 +56,7 @@
                   </div>
                   <span>Subscriptions</span>
                 </a>
-                <a class="nav-item" href="./page_5.html">
+                <a class="nav-item active" href="#">
                   <div class="nav-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
                       <path
@@ -72,60 +73,81 @@
         </div>
 
         <div class="content-area">
-          <h2 class="page-title">Overview</h2>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <p class="stat-label">Events</p>
-              <p class="stat-value">120</p>
-              <p class="stat-change positive">+10%</p>
+          <div class="layout-content-container">
+            <div class="page-header">
+              <div class="page-title-section">
+                <p class="page-title">Contacts</p>
+                <p class="page-subtitle">Manage and view contact information.</p>
+              </div>
             </div>
-            <div class="stat-card">
-              <p class="stat-label">Subscriptions</p>
-              <p class="stat-value">45</p>
-              <p class="stat-change negative">-5%</p>
-            </div>
-            <div class="stat-card">
-              <p class="stat-label">Contacts</p>
-              <p class="stat-value">230</p>
-              <p class="stat-change positive">+15%</p>
-            </div>
-          </div>
 
-          <h2 class="page-title">Recent Activity</h2>
-          <div class="table-container">
-            <div class="table-wrapper">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 400px;">Event</th>
-                    <th style="width: 400px;">Date</th>
-                    <th style="width: 240px;">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Tech Meetup</td>
-                    <td class="text-muted">2024-03-15</td>
-                    <td>
-                      <button class="status-button">Upcoming</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Marketing Workshop</td>
-                    <td class="text-muted">2024-02-20</td>
-                    <td>
-                      <button class="status-button">Completed</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Design Conference</td>
-                    <td class="text-muted">2024-01-10</td>
-                    <td>
-                      <button class="status-button">Completed</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="search-container">
+              <div class="search-wrapper">
+                <div class="search-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  class="search-input"
+                  type="text"
+                  placeholder="Search by email"
+                />
+              </div>
+            </div>
+
+            <div class="tabs-container">
+              <div class="tabs-wrapper">
+                <a class="tab-link active" href="#">
+                  <p class="tab-text">New</p>
+                </a>
+                <a class="tab-link" href="#">
+                  <p class="tab-text">Old</p>
+                </a>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <div class="table-wrapper">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="width: 400px;">Name</th>
+                      <th style="width: 400px;">Email</th>
+                      <th style="width: 400px;">Message</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Ethan Harper</td>
+                      <td class="text-muted">ethan.harper@email.com</td>
+                      <td class="text-muted">I'm interested in learning more about your services.</td>
+                    </tr>
+                    <tr>
+                      <td>Olivia Bennett</td>
+                      <td class="text-muted">olivia.bennett@email.com</td>
+                      <td class="text-muted">Can you provide a demo of the product?</td>
+                    </tr>
+                    <tr>
+                      <td>Noah Carter</td>
+                      <td class="text-muted">noah.carter@email.com</td>
+                      <td class="text-muted">I have a question about pricing.</td>
+                    </tr>
+                    <tr>
+                      <td>Ava Mitchell</td>
+                      <td class="text-muted">ava.mitchell@email.com</td>
+                      <td class="text-muted">I'd like to schedule a call to discuss my needs.</td>
+                    </tr>
+                    <tr>
+                      <td>Liam Foster</td>
+                      <td class="text-muted">liam.foster@email.com</td>
+                      <td class="text-muted">I'm looking for a solution to improve my workflow.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
