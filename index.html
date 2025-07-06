@@ -12,6 +12,7 @@
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/common.css">
     <link rel="stylesheet" href="./assets/css/index.css">
   </head>
   <body>
@@ -43,12 +44,9 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="navbar-item" href="#">Home</a>
-                <a class="navbar-item" href="#">Login</a>
-                <a class="navbar-item" href="#">Admin</a>
-                <button class="button is-primary">
-                  <span>Create Event</span>
-                </button>
+                <a href="./pages/login.html" class="button is-primary">
+                  <span>Login</span>
+                </a>
               </div>
             </div>
           </div>
@@ -58,47 +56,72 @@
       <div class="main-content">
         <div class="layout-content-container">
           <div class="featured-events">
-            <div class="featured-event-card">
-              <div
-                class="event-image"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDLIY6NzbXTD177vdPitzr4Frv1Obfnajsx-l4dm_T1K5EeIXPP3Z9fIVuX2ZMBXlL3AMhns7E-B9Wc9qaRwdlmWeXvMN8VxDwQY1C_ku2wvo1hv00Q9BkbwTfqqJ_OPPiPQfCEmGzILNqeeNsxtdypH2YbJ4m6_JiGliQFHKBzcKhUER9I9VGsB9bNYZTX5tYHI-8wh-LQmYOmbL4bU5Mg8EC2m4rMVFGq04rczKD2y8CXGPi98_i8ZsPPaxk37zFAACyi2kIyS9z-");'
-              ></div>
-              <div>
-                <p class="event-title">Live Music Concert</p>
-                <p class="event-description">Experience the thrill of live music with top artists.</p>
+            <div class="carousel-container">
+              <div class="carousel-wrapper">
+                <div class="carousel-slide active">
+                  <div class="featured-event-card">
+                    <div
+                      class="event-image"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDLIY6NzbXTD177vdPitzr4Frv1Obfnajsx-l4dm_T1K5EeIXPP3Z9fIVuX2ZMBXlL3AMhns7E-B9Wc9qaRwdlmWeXvMN8VxDwQY1C_ku2wvo1hv00Q9BkbwTfqqJ_OPPiPQfCEmGzILNqeeNsxtdypH2YbJ4m6_JiGliQFHKBzcKhUER9I9VGsB9bNYZTX5tYHI-8wh-LQmYOmbL4bU5Mg8EC2m4rMVFGq04rczKD2y8CXGPi98_i8ZsPPaxk37zFAACyi2kIyS9z-");'
+                    ></div>
+                    <div>
+                      <p class="event-title">Live Music Concert</p>
+                      <p class="event-description">Experience the thrill of live music with top artists.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="featured-event-card">
+                    <div
+                      class="event-image"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyzj3aM8Qt0oCMhkmdwi45jyo2twnfM1DylKpiRtibr4cajPkcGzjNhTK8xkw3qw36yV6_jxqTmkRGLhBbUAUBGKtO8qQqHL8cRFsOoGRkU0xZyDO3pCbQJrITGbE3Yj6qTVqdgCR-fPmM8ccDpqcknF2PLIhhpqyQWEiKxGLA_fDGkLqaX9ZJ9hi4DnRRqfiTjuKlVXLqy-105CGjcofnoVVoio7dA0x8AV1YSiW5mjdWlIrTWZrYkB8WDCaQ8eJAxhjREh4pEnQm");'
+                    ></div>
+                    <div>
+                      <p class="event-title">Summer Music Festival</p>
+                      <p class="event-description">Join us for a weekend of music, art, and community.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="featured-event-card">
+                    <div
+                      class="event-image"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQYRSawTxCA33T_ZAD0f0nHcICC-oh75GYaPtKFvoi7e1S5YFPNEHgeU8knNnF6vy1gwfqihzRrwLVFgiYNeyq_NC7GuY7bSEZRrwW8RvudfQEhlfYBGmdW3BcD1RSiFG-InnkC0KnAObudwy-EHJTqih7IYNKbkAUR3CF6NpzHGAT7-Y8B8ObLXkrddqPhj4VjgZs0Fzg8HOJ6Q8ugLMqxtxnrk35DUTjQnHWoYgmXPavVA2WsmL1uKA_8PIdVhbx6YR-n45mrWqN");'
+                    ></div>
+                    <div>
+                      <p class="event-title">Sports Tournament</p>
+                      <p class="event-description">Compete or cheer in our annual sports tournament.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Flechas del carrusel -->
+                <button class="carousel-arrow left" aria-label="Anterior">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="carousel-arrow right" aria-label="Siguiente">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
               </div>
-            </div>
-            <div class="featured-event-card">
-              <div
-                class="event-image"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyzj3aM8Qt0oCMhkmdwi45jyo2twnfM1DylKpiRtibr4cajPkcGzjNhTK8xkw3qw36yV6_jxqTmkRGLhBbUAUBGKtO8qQqHL8cRFsOoGRkU0xZyDO3pCbQJrITGbE3Yj6qTVqdgCR-fPmM8ccDpqcknF2PLIhhpqyQWEiKxGLA_fDGkLqaX9ZJ9hi4DnRRqfiTjuKlVXLqy-105CGjcofnoVVoio7dA0x8AV1YSiW5mjdWlIrTWZrYkB8WDCaQ8eJAxhjREh4pEnQm");'
-              ></div>
-              <div>
-                <p class="event-title">Summer Music Festival</p>
-                <p class="event-description">Join us for a weekend of music, art, and community.</p>
-              </div>
-            </div>
-            <div class="featured-event-card">
-              <div
-                class="event-image"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQYRSawTxCA33T_ZAD0f0nHcICC-oh75GYaPtKFvoi7e1S5YFPNEHgeU8knNnF6vy1gwfqihzRrwLVFgiYNeyq_NC7GuY7bSEZRrwW8RvudfQEhlfYBGmdW3BcD1RSiFG-InnkC0KnAObudwy-EHJTqih7IYNKbkAUR3CF6NpzHGAT7-Y8B8ObLXkrddqPhj4VjgZs0Fzg8HOJ6Q8ugLMqxtxnrk35DUTjQnHWoYgmXPavVA2WsmL1uKA_8PIdVhbx6YR-n45mrWqN");'
-              ></div>
-              <div>
-                <p class="event-title">Sports Tournament</p>
-                <p class="event-description">Compete or cheer in our annual sports tournament.</p>
-              </div>
-            </div>
-            <div class="featured-event-card">
-              <div
-                class="event-image"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMBDw8I0ePXqCPkuLlZBUjfhG86wWEgLJa5M2ZXxyufXW4Uzg4Ef6YPqEPDxDsMYbjWPGlxPRYKP9CNPGoACTx1KvWqHRUeWGzmYbIREVdmkdtU34B3a-o_6Ri2git1L4BDQ8Ta20V92HkU1aGyaAWv9-7UZF4ZcN5UqRhHqIfpAD5R2nyeTAoRrJjv6Q4fnLCmmycPg33UhE8wIKYRzJKFNRGxG1FEYNir2NnfZMg8Grlt94GPn5c7Tu2EbiPqCpDLF_uNlWY9W1a");'
-              ></div>
-              <div>
-                <p class="event-title">Tech Conference</p>
-                <p class="event-description">Network and learn at our premier tech conference.</p>
+              <div class="carousel-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
               </div>
             </div>
           </div>
+
+          <!-- Sección de evento destacado -->
+          <section class="highlighted-event-section">
+            <div class="highlighted-event-container">
+              <div class="highlighted-event-image" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="highlighted-event-info">
+                <h3 class="highlighted-event-title">Evento Estrella: Gala Anual 2024</h3>
+                <p class="highlighted-event-description">
+                  Este evento es el más importante del año porque reúne a los líderes de la industria, artistas reconocidos y a toda la comunidad en una noche inolvidable de innovación, inspiración y networking. ¡No te pierdas la oportunidad de ser parte de la historia y vivir una experiencia única que marcará tendencia para el futuro!
+                </p>
+              </div>
+            </div>
+          </section>
 
           <h2 class="section-title">Upcoming Events</h2>
           <div class="events-grid">
@@ -145,26 +168,37 @@
           </div>
 
           <h2 class="section-title">Contact Us</h2>
-          <div class="contact-form">
-            <div class="field">
-              <div class="control">
-                <input class="input" type="text" placeholder="Your Name">
+          <div class="contact-section">
+            <form class="contact-form">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Nombres">
+                </div>
               </div>
-            </div>
-            <div class="field">
-              <div class="control">
-                <input class="input" type="email" placeholder="Your Email">
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="email" placeholder="Correo">
+                </div>
               </div>
-            </div>
-            <div class="field">
-              <div class="control">
-                <textarea class="textarea" placeholder="Your Message"></textarea>
+              <div class="field">
+                <div class="control">
+                  <textarea class="textarea" placeholder="Mensaje"></textarea>
+                </div>
               </div>
-            </div>
-            <div class="field">
-              <div class="control">
-                <button class="button is-primary">Send</button>
+              <div class="field">
+                <div class="control has-text-centered">
+                  <button class="button is-primary" type="submit">Enviar</button>
+                </div>
               </div>
+            </form>
+            <div class="contact-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.870726372882!2d-74.0817536846767!3d4.609710343987012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a4b2b2b2b3%3A0x2a2a2a2a2a2a2a2a!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2sco!4v1710000000000!5m2!1ses!2sco"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación en Google Maps">
+              </iframe>
             </div>
           </div>
         </div>
@@ -178,6 +212,14 @@
             <a class="footer-link" href="#">Privacy Policy</a>
             <a class="footer-link" href="#">Terms of Service</a>
           </div>
+          <!-- Suscripción a nuevos eventos -->
+          <form class="footer-subscribe-form">
+            <label for="footer-subscribe-input" class="footer-subscribe-label">Suscribirme a nuevos eventos</label>
+            <div class="footer-subscribe-row">
+              <input id="footer-subscribe-input" class="footer-subscribe-input" type="email" placeholder="Correo electrónico" required />
+              <button class="footer-subscribe-btn" type="submit">Suscribirme</button>
+            </div>
+          </form>
           <div class="social-links">
             <a href="#">
               <div class="social-icon">
@@ -211,5 +253,6 @@
         </div>
       </footer>
     </div>
+    <script src="./app.js" type="module"></script>
   </body>
 </html>
