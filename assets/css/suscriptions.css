@@ -1,14 +1,5 @@
 /* Estilos específicos para page_3.html (Subscriptions) */
 
-/* Main content layout */
-.main-content {
-  padding: 1.25rem 1.5rem;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 0.25rem;
-}
-
 /* Page header */
 .page-header {
   display: flex;
@@ -26,39 +17,12 @@
 }
 
 .page-title {
-  color: var(--text-white);
+  color: var(--accent-red);
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
-}
-
-.page-subtitle {
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  margin: 0;
-}
-
-/* Page header */
-.page-header {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 1rem;
-}
-
-.page-title-section {
-  display: flex;
-  min-width: 288px;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.page-title {
-  color: var(--text-white);
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0;
+  text-shadow: 0 2px 8px #e1060033;
+  letter-spacing: 0.08em;
 }
 
 .page-subtitle {
@@ -76,8 +40,9 @@
   display: flex;
   overflow: hidden;
   border-radius: 0.75rem;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--accent-red);
   background-color: var(--primary-bg);
+  box-shadow: 0 2px 8px #e1060033;
 }
 
 .table {
@@ -88,12 +53,13 @@
 
 .table thead th {
   background-color: var(--header-bg);
-  color: var(--text-white);
+  color: var(--accent-red);
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.75rem 1rem;
   text-align: left;
   border: none;
+  border-bottom: 2px solid var(--accent-red);
 }
 
 .table tbody td {
@@ -121,35 +87,37 @@
   border-radius: 0.75rem;
   height: 2rem;
   padding: 0 1rem;
-  background-color: var(--secondary-bg);
+  background-color: var(--accent-red);
   color: var(--text-white);
   font-size: 0.875rem;
-  font-weight: 500;
-  border: none;
+  font-weight: bold;
+  border: 1.5px solid var(--accent-red);
   width: 100%;
+  box-shadow: 0 2px 8px #e1060033;
+  transition: background 0.2s, box-shadow 0.2s, border 0.2s;
 }
 
 .status-button:hover {
-  opacity: 0.9;
+  background-color: var(--accent-red-hover);
+  border-color: var(--accent-red-hover);
+  box-shadow: 0 4px 16px #ff3c2833;
 }
 
 .action-links {
-  color: var(--text-muted);
+  color: var(--accent-red);
   font-size: 0.875rem;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 .action-links:hover {
-  color: var(--text-muted);
+  color: var(--accent-red-hover);
+  text-decoration: underline;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 0.75rem 1rem;
-  }
-  
   .page-header {
     padding: 0.75rem;
   }
@@ -157,18 +125,10 @@
   .page-title-section {
     min-width: auto;
   }
-  
-  .main-content {
-    padding: 1rem;
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  
-  .sidebar-content {
-    min-height: auto;
-  }
+}
+
+/* --- Metalero: Más rojo y detalles ochenteros --- */
+
+.table tbody tr:hover {
+  box-shadow: 0 2px 8px #e1060033;
 } 
