@@ -1,20 +1,20 @@
+import { getUsers } from '../api/userAPI.js';
+
 const loginButton = document.getElementById('login-button');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
 const notificationToast = document.getElementById('notification-toast');
 
-let users ={
-    admin: {
-        username: 'admin',
-        password: 'admin'
-    }
-}
+function validateLogin(users, username, password) {
 
-function validateLogin(username, password) {
-    if (username === users.admin.username && password === users.admin.password) {
+    const user = users.find(user => 
+        user.username === username && user.password === password
+    );
+    
+    if (user) {
         return true;
-    }
-    notificationToast.innerHTML = `
+    } else {
+        notificationToast.innerHTML = `
             <div class="notification-header">
                 <h4 class="notification-title">Error in login</h4>
                 <button class="notification-close">&times;</button>
@@ -25,11 +25,21 @@ function validateLogin(username, password) {
         setTimeout(() => {
             notificationToast.style.display = 'none';
         }, 3000);
+        return false;
+    }
+}
+
+function isAdmin(username, users) {
+    const user = users.find(user => user.username === username);
+    
+    if (user) {
+        return user.admin;
+    }
     return false;
 }
 
 function isFieldEmpty() {
-    if (username === '' || password === '') {
+    if (username.value === '' || password.value === '') {
         notificationToast.innerHTML = `
             <div class="notification-header">
                 <h4 class="notification-title">Error in login</h4>
@@ -41,16 +51,42 @@ function isFieldEmpty() {
         setTimeout(() => {
             notificationToast.style.display = 'none';
         }, 3000);
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
-loginButton.addEventListener('click', () => {
-    const usernameValue = username.value;
-    const passwordValue = password.value;
+loginButton.addEventListener('click', async () => {
+    try {
+        const { data: users } = await getUsers();
+        
+        console.log('Usuarios cargados:', users);
+        
+        const usernameValue = username.value;
+        const passwordValue = password.value;
+        
+        console.log('Credenciales ingresadas:', { username: usernameValue, password: passwordValue });
 
-    if (isFieldEmpty() && validateLogin(usernameValue, passwordValue)) {
-        window.location.href = '../pages/dashboard.html';
+        if (!isFieldEmpty()) {
+            console.log('Campos no están vacíos, validando credenciales...');
+            
+            if (validateLogin(users, usernameValue, passwordValue)) {
+                console.log('Credenciales válidas, verificando si es admin...');
+                
+                if (isAdmin(usernameValue, users)) {
+                    console.log('Usuario es admin, redirigiendo a dashboard...');
+                    window.location.href = '../pages/dashboard.html';
+                } else {
+                    console.log('Usuario no es admin, redirigiendo a events...');
+                    window.location.href = '../index.html';
+                }
+            } else {
+                console.log('Credenciales inválidas');
+            }
+        } else {
+            console.log('Campos están vacíos');
+        }
+    } catch (error) {
+        console.error('Error en el login:', error);
     }
 });

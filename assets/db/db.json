@@ -1,5 +1,16 @@
 {
-  "users": [],
+  "users": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "admin": true
+    },
+    {
+      "username": "normal",
+      "password": "1234",
+      "admin": false
+    }
+  ],
   "events": [
     {
       "id": "1",
