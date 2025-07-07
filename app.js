@@ -1,8 +1,10 @@
-import { initCarousel } from './scripts/bulma.js';
+import { initCarousel, loadVideos } from './scripts/bulma.js';
 import { getEvents, newEvent } from './api/eventAPI.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   initCarousel();
+  loadVideos('event-image-video');
+  
   let { data: events } = await getEvents();
   console.log(events);
 
