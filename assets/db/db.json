@@ -1,6 +1,47 @@
 {
   "users": [],
-  "events": [],
+  "events": [
+    {
+      "id": 1,
+      "name": "Nexus Event",
+      "description": "A gathering of minds and ideas.",
+      "date": "2023-10-15",
+      "time": "10:00",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "name": "Tech Conference",
+      "description": "Exploring the latest in technology.",
+      "date": "2023-11-20",
+      "time": "09:00",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "name": "Art Exhibition",
+      "description": "Showcasing contemporary art.",
+      "date": "2023-12-05",
+      "time": "18:00",
+      "status": "canceled"
+    },
+    {
+      "id": 4,
+      "name": "Music Festival",
+      "description": "A celebration of music and culture.",
+      "date": "2024-01-10",
+      "time": "12:00",
+      "status": "inactive"
+    },
+    {
+      "id": 5,
+      "name": "Food Fair",
+      "description": "A culinary journey through local flavors.",
+      "date": "2024-02-15",
+      "time": "11:00",
+      "status": "inactive"
+    }
+  ],
   "suscriptions": [],
   "contacts": []
 }
