@@ -40,7 +40,7 @@
       "price": 35,
       "genre": "Metal",
       "artist": "Iron Fist, Thunder Storm, Dark Lords",
-      "status": "active",
+      "status": "canceled",
       "cover": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop"
     },
     {
@@ -54,7 +54,7 @@
       "price": 40,
       "genre": "Rock 80s",
       "artist": "80s Tribute Band, Rock Legends Cover",
-      "status": "active",
+      "status": "inactive",
       "cover": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop"
     },
     {

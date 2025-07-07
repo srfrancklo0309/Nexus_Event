@@ -116,6 +116,79 @@
   text-decoration: underline;
 }
 
+/* Subscriptions grid styles */
+.subscriptions-grid-container {
+  padding: 1rem;
+}
+
+.subscriptions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.subscription-card {
+  background: var(--primary-bg);
+  border: 2px solid var(--accent-red);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px #e1060033;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.subscription-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.subscription-id {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.subscription-email {
+  color: var(--text-white);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.subscription-details {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.subscription-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.unsubscribe-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  background-color: var(--accent-red);
+  color: var(--text-white);
+  font-size: 0.875rem;
+  font-weight: bold;
+  border: 1.5px solid var(--accent-red);
+  transition: background 0.2s, box-shadow 0.2s, border 0.2s;
+}
+
+.unsubscribe-button:hover {
+  background-color: var(--accent-red-hover);
+  border-color: var(--accent-red-hover);
+  box-shadow: 0 4px 16px #ff3c2833;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .page-header {
@@ -131,4 +204,4 @@
 
 .table tbody tr:hover {
   box-shadow: 0 2px 8px #e1060033;
-} 
+}
