@@ -21,13 +21,13 @@
   min-width: 158px;
   flex: 1;
   flex-direction: column;
+  border-bottom: 3px solid var(--accent-red);
+  box-shadow: 0 2px 8px #e1060033;
+  transition: box-shadow 0.2s, border 0.2s;
   gap: 0.5rem;
   border-radius: 0.75rem;
   padding: 1.5rem;
   background-color: var(--secondary-bg);
-  border-bottom: 3px solid var(--accent-red);
-  box-shadow: 0 2px 8px #e1060033;
-  transition: box-shadow 0.2s, border 0.2s;
 }
 
 .stat-card:hover {
@@ -37,14 +37,14 @@
 
 .stat-label {
   color: var(--text-white);
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  margin: 0;
+  top: 0;
 }
 
 .stat-value {
   color: var(--accent-red);
-  font-size: 1.5rem;
+  font-size: 3rem;
   font-weight: bold;
   margin: 0;
 }
@@ -63,53 +63,10 @@
   margin: 0;
 }
 
-/* Table styles */
-.table-container {
-  padding: 0.75rem 1rem;
-}
-
-.table-wrapper {
+.stat-change {
   display: flex;
-  overflow: hidden;
-  border-radius: 0.75rem;
-  border: 2px solid var(--accent-red);
-  background-color: var(--primary-bg);
-  box-shadow: 0 2px 8px #e1060033;
-}
-
-.table {
-  width: 100%;
-  background-color: transparent;
-  color: var(--text-white);
-}
-
-.table thead th {
-  background-color: var(--header-bg);
-  color: var(--accent-red);
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border: none;
-  border-bottom: 2px solid var(--accent-red);
-}
-
-.table tbody td {
-  color: var(--text-white);
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-top: 1px solid var(--border-color);
-  height: 72px;
-  vertical-align: middle;
-}
-
-.table tbody td.text-muted {
-  color: var(--text-muted);
-}
-
-.table tbody tr:hover {
-  box-shadow: 0 2px 8px #e1060033;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .status-button {
@@ -133,6 +90,14 @@
   transition: background 0.2s, box-shadow 0.2s, border 0.2s;
 }
 
+.stat-events {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
 .status-button:hover {
   background-color: var(--accent-red-hover);
   border-color: var(--accent-red-hover);
@@ -150,41 +115,14 @@
   }
 }
 
-/* --- Metalero: Más rojo y detalles ochenteros --- */
-
 .page-title, .dashboard-title {
   color: var(--accent-red);
   text-shadow: 0 2px 8px #e1060033;
   letter-spacing: 0.08em;
 }
 
-.stat-card {
-  border-bottom: 3px solid var(--accent-red);
-  box-shadow: 0 2px 8px #e1060033;
-  transition: box-shadow 0.2s, border 0.2s;
-}
-
-.stat-card:hover {
-  box-shadow: 0 4px 16px #e1060033, 0 2px 8px #0008;
-  border-bottom: 3px solid var(--accent-red-hover);
-}
-
 .stat-value {
   color: var(--accent-red);
-}
-
-.table-wrapper {
-  border: 2px solid var(--accent-red);
-  box-shadow: 0 2px 8px #e1060033;
-}
-
-.table thead th {
-  color: var(--accent-red);
-  border-bottom: 2px solid var(--accent-red);
-}
-
-.table tbody tr:hover {
-  box-shadow: 0 2px 8px #e1060033;
 }
 
 .status-button {
@@ -200,4 +138,15 @@
   background-color: var(--accent-red-hover);
   border-color: var(--accent-red-hover);
   box-shadow: 0 4px 16px #ff3c2833;
-} 
+}
+
+.table-wrapper {
+  display: flex;
+  gap: 1rem;
+  border: none;
+  box-shadow: none;
+}
+
+.recent-activity-cards {
+  margin-bottom: 25px;
+}
