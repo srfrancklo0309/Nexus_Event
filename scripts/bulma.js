@@ -7,7 +7,8 @@ export function initCarousel() {
   const carouselContainer = document.querySelector('.carousel-container');
 
   let currentSlide = 0;
-  const slideInterval = 7000; // 5 segundos entre cada cambio
+  const slideInterval = 8000; // 7 segundos entre cada cambio
+  let autoSlideInterval = null;
 
   function showSlide(index) {
     slides.forEach(slide => {
@@ -30,37 +31,83 @@ export function initCarousel() {
     showSlide(currentSlide);
   }
 
-  let autoSlideInterval = setInterval(nextSlide, slideInterval);
+  function resetAutoSlideInterval() {
+    if (autoSlideInterval) {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = null;
+    }
+    autoSlideInterval = setInterval(nextSlide, slideInterval);
+  }
+
+  // Inicializar el intervalo solo una vez
+  resetAutoSlideInterval();
 
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       currentSlide = index;
       showSlide(currentSlide);
-      clearInterval(autoSlideInterval);
-      autoSlideInterval = setInterval(nextSlide, slideInterval);
+      resetAutoSlideInterval();
     });
   });
 
   // AddEventListeners
   // Sliding control
   carouselContainer.addEventListener('mouseenter', () => {
-    clearInterval(autoSlideInterval);
+    if (autoSlideInterval) {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = null;
+    }
   });
   
   carouselContainer.addEventListener('mouseleave', () => {
-    autoSlideInterval = setInterval(nextSlide, slideInterval);
+    resetAutoSlideInterval();
   });
 
   // Row navigations
   leftArrow.addEventListener('click', () => {
     prevSlide();
-    clearInterval(autoSlideInterval);
-    autoSlideInterval = setInterval(nextSlide, slideInterval);
+    resetAutoSlideInterval();
   });
 
   rightArrow.addEventListener('click', () => {
     nextSlide();
-    clearInterval(autoSlideInterval);
-    autoSlideInterval = setInterval(nextSlide, slideInterval);
+    resetAutoSlideInterval();
   });
-} 
+}
+
+export function loadVideos(videosID) {
+  const videos = document.querySelectorAll(`.${videosID}`);
+  
+  function pauseVideos(currentVideo) {
+    videos.forEach(video => {
+      video.pause();
+      video.currentTime = 0;
+      if (video !== currentVideo && video._playTimeout) {
+        clearTimeout(video._playTimeout);
+        video._playTimeout = null;
+      }
+    });
+  }
+
+  videos.forEach(video => {
+    video.volume = 0.1;
+
+    video.addEventListener('mouseenter', () => {
+      pauseVideos(video);
+
+      video._playTimeout = setTimeout(() => {
+        video.play();
+      }, 1500);
+    });
+
+    video.addEventListener('mouseleave', () => {
+      if (video._playTimeout) {
+        clearTimeout(video._playTimeout);
+        video._playTimeout = null;
+      }
+
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+}
