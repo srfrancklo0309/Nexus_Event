@@ -1,3 +1,338 @@
 /* Estilos específicos para (Events) */
 
-/* No specific styles needed - all styles are now in common.css */ 
+/* No specific styles needed - all styles are now in common.css */
+
+/* Estilos para los botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.action-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-link {
+  color: #e0326b; /* Azul de Bulma */
+}
+
+.edit-link:hover {
+  background-color: #f0f8ff;
+  border-color: #3273dc;
+  color: #2366d1;
+}
+
+.delete-link {
+  color: #f14668; /* Rojo de Bulma */
+}
+
+.delete-link:hover {
+  background-color: #fff5f5;
+  border-color: #f14668;
+  color: #e0326b;
+}
+
+/* Responsive para botones de acción */
+@media (max-width: 768px) {
+  .action-buttons {
+    gap: 8px;
+  }
+  
+  .action-link {
+    padding: 6px;
+  }
+}
+
+/* Estilos para el botón New Event */
+.new-event-btn {
+  background-color: #3273dc;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.new-event-btn:hover {
+  background-color: #2366d1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(50, 115, 220, 0.3);
+  color: white;
+}
+
+.new-event-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(50, 115, 220, 0.3);
+}
+
+.new-event-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(50, 115, 220, 0.3);
+}
+
+/* Responsive para el botón New Event */
+@media (max-width: 768px) {
+  .new-event-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Mover el botón de status hacia la izquierda */
+.status-button {
+  margin-left: -130px;
+}
+
+/* Estilos para el modal de nuevo evento */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  background-color: var(--primary-bg);
+  border-radius: 12px;
+  border: 2px solid var(--accent-red);
+  box-shadow: 0 2px 8px #e1060033;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 24px 16px 24px;
+  border-bottom: 2px solid var(--accent-red);
+  background-color: var(--header-bg);
+  border-radius: 12px 12px 0 0;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-red);
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 2px 8px #e1060033;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #6b7280;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.modal-body {
+  padding: 24px;
+  color: var(--text-white);
+}
+
+/* Estilos del formulario */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-white);
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--secondary-bg);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text-white);
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn-cancel,
+.btn-submit {
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-cancel {
+  background-color: var(--secondary-bg);
+  color: var(--text-white);
+  border: 1px solid var(--border-color);
+}
+
+.btn-cancel:hover {
+  background-color: var(--border-color);
+}
+
+.btn-submit {
+  background-color: var(--accent-red);
+  color: var(--primary-bg);
+  border: none;
+}
+
+.btn-submit:hover {
+  background-color: var(--accent-red-hover);
+  opacity: 0.9;
+}
+
+/* Responsive para el modal */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .modal-header {
+    padding: 20px 20px 16px 20px;
+  }
+  
+  .modal-body {
+    padding: 20px;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}
+
+/* Estilos para el select */
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--secondary-bg);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text-white);
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.form-group select option {
+  padding: 8px;
+}
+
+
+
+ 

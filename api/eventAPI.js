@@ -1,4 +1,4 @@
-import { getData, createData } from "./API.js";
+import { getData, createData, updateData, deleteData } from "./API.js";
 
 const ENDPOINT = "events";
 
@@ -28,7 +28,27 @@ const newEvent = async (event) => {
   }
 }
 
+const updateEvent = async (event) => {
+  try {
+    await updateData(ENDPOINT, event, event.id);
+    return { status: true, message: "Evento actualizado exitosamente" };
+  } catch (error) {
+    return { status: false, message: error };
+  }
+}
+
+const deleteEvent = async (id) => {
+  try {
+    await deleteData(ENDPOINT, id);
+    return { status: true, message: "Evento eliminado exitosamente" };
+  } catch (error) {
+    return { status: false, message: error };
+  }
+}
+
 export {
   getEvents,
-  newEvent
+  newEvent,
+  updateEvent,
+  deleteEvent
 }
