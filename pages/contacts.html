@@ -5,7 +5,7 @@
   <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700" />
 
-  <title>Stitch Design</title>
+  <title>Nexus Events - Contacts</title>
   <link rel="icon" type="image/x-icon" href="../assets/img/pagina-icono1.png" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -19,6 +19,9 @@
       <div class="sidebar">
         <div class="sidebar-content">
           <div class="sidebar-header">
+            <div class="logo-container">
+              <img src="../assets/img/logo-transparent.png" alt="Nexus Event Logo" class="logo">
+            </div>
             <div>
               <h1 class="dashboard-title">Dashboard</h1>
               <p class="dashboard-subtitle">Welcome back, Alex</p>
@@ -67,6 +70,17 @@
                   </svg>
                 </div>
                 <span>Contacts</span>
+              </a>
+              <a class="nav-item logout-btn" href="#" id="logoutBtn">
+                <div class="nav-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <path
+                      d="M112,216a8,8,0,0,1-8,8H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h56a8,8,0,0,1,0,16H48V208h56A8,8,0,0,1,112,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L196.69,120H104a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,221.66,122.34Z">
+                    </path>
+                  </svg>
+                </div>
+                <span>Logout</span>
               </a>
 
             </div>
@@ -150,6 +164,7 @@
       </div>
     </div>
   </div>
+  <script src="../scripts/contacts.js" type="module"></script>
 </body>
 
 </html>

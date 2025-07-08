@@ -17,20 +17,6 @@
   ],
   "events": [
     {
-      "id": "1",
-      "name": "Rock Revolution Festival",
-      "description": "Festival de rock con las mejores bandas del momento. Una noche llena de energía y música en vivo.",
-      "date": "2024-06-15",
-      "time": "19:00",
-      "location": "Estadio Municipal",
-      "capacity": 5000,
-      "price": 45,
-      "genre": "Rock",
-      "artist": "Multiple Artists",
-      "status": "active",
-      "cover": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop"
-    },
-    {
       "id": "2",
       "name": "Punk Explosion",
       "description": "Noche de punk rock puro con bandas locales e internacionales. Mosh pit garantizado.",
