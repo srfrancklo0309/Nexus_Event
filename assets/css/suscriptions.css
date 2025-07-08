@@ -31,51 +31,6 @@
   margin: 0;
 }
 
-/* Table styles */
-.table-container {
-  padding: 0.75rem 1rem;
-}
-
-.table-wrapper {
-  display: flex;
-  overflow: hidden;
-  border-radius: 0.75rem;
-  border: 2px solid var(--accent-red);
-  background-color: var(--primary-bg);
-  box-shadow: 0 2px 8px #e1060033;
-}
-
-.table {
-  width: 100%;
-  background-color: transparent;
-  color: var(--text-white);
-}
-
-.table thead th {
-  background-color: var(--header-bg);
-  color: var(--accent-red);
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border: none;
-  border-bottom: 2px solid var(--accent-red);
-}
-
-.table tbody td {
-  color: var(--text-white);
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-top: 1px solid var(--border-color);
-  height: 72px;
-  vertical-align: middle;
-}
-
-.table tbody td.text-muted {
-  color: var(--text-muted);
-}
-
 .status-button {
   display: flex;
   min-width: 84px;
@@ -148,6 +103,8 @@
   color: var(--text-muted);
   font-size: 0.95rem;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
 }
 
 .subscription-email {
