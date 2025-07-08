@@ -11,7 +11,7 @@ const checkResponse = (response) => {
 
 const getData = async (ENDPOINT) => {
   return fetch(`${BASEURL}/${ENDPOINT}`)
-    .then(checkResponse)
+    .then(checkResponse)  
     .then(response => response.json());
 };
 
@@ -24,8 +24,8 @@ const createData = async (ENDPOINT, data) => {
     .then(response => response.json());
 }
 
-const updateData = async (ENDPOINT, data) => {
-  return fetch(`${BASEURL}/${ENDPOINT}`, {
+const updateData = async (ENDPOINT, data, id) => {
+  return fetch(`${BASEURL}/${ENDPOINT}/${id}`, {
     ...HEADERS,
     method: 'PUT',
     body: JSON.stringify(data)
@@ -33,8 +33,8 @@ const updateData = async (ENDPOINT, data) => {
     .then(response => response.json());
 };
 
-const patchData = async (ENDPOINT, data) => {
-  return fetch(`${BASEURL}/${ENDPOINT}`, {
+const patchData = async (ENDPOINT, data, id) => {
+  return fetch(`${BASEURL}/${ENDPOINT}/${id}`, {
     ...HEADERS,
     method: 'PATCH',
     body: JSON.stringify(data)
@@ -42,8 +42,8 @@ const patchData = async (ENDPOINT, data) => {
     .then(response => response.json());
 };
 
-const deleteData = async (ENDPOINT, data) => {
-  return fetch(`${BASEURL}/${ENDPOINT}`, {
+const deleteData = async (ENDPOINT, id) => {
+  return fetch(`${BASEURL}/${ENDPOINT}/${id}`, {
     method: 'DELETE',
   }).then(checkResponse)
     .then(response => response.json());

@@ -1,0 +1,321 @@
+import { getEvents, newEvent, updateEvent, deleteEvent } from "../api/eventAPI.js";
+
+// Elementos del DOM
+const eventsTable = document.getElementById("events-table");
+const newEventBtn = document.querySelector(".new-event-btn");
+const newEventModal = document.getElementById("newEventModal");
+const cancelNewEvent = document.getElementById("cancelNewEvent");
+const newEventForm = document.getElementById("newEventForm");
+
+// Elementos del modal de editar
+const editEventModal = document.getElementById("editEventModal");
+const closeEditEventModal = document.getElementById("closeEditEventModal");
+const cancelEditEvent = document.getElementById("cancelEditEvent");
+const editEventForm = document.getElementById("editEventForm");
+
+// Campos del formulario de editar
+const editEventId = document.getElementById("editEventId");
+const editEventName = document.getElementById("editEventName");
+const editEventDescription = document.getElementById("editEventDescription");
+const editEventDate = document.getElementById("editEventDate");
+const editEventTime = document.getElementById("editEventTime");
+const editEventLocation = document.getElementById("editEventLocation");
+const editEventCapacity = document.getElementById("editEventCapacity");
+const editEventPrice = document.getElementById("editEventPrice");
+const editEventGenre = document.getElementById("editEventGenre");
+const editEventArtist = document.getElementById("editEventArtist");
+const editEventStatus = document.getElementById("editEventStatus");
+
+const modalBackground = document.querySelector(".modal-background");
+
+
+const deleteEventButton = document.querySelector(".delete-link");
+
+// Función para mostrar el modal
+function showNewEventModal() {
+    newEventModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+// Función para ocultar el modal
+function hideNewEventModal() {
+    newEventModal.classList.remove("show");
+    document.body.style.overflow = "";
+    newEventForm.reset(); // Limpiar formulario
+}
+
+// Función para mostrar el modal de editar
+function showEditEventModal() {
+    editEventModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+// Función para ocultar el modal de editar
+function hideEditEventModal() {
+    editEventModal.classList.remove("show");
+    document.body.style.overflow = "";
+    editEventForm.reset(); // Limpiar formulario
+}
+
+// Función para cargar eventos en la tabla
+async function loadEvents() {
+    try {
+        const response = await getEvents();
+
+        if (response.status && response.data && response.data.length > 0) {
+            eventsTable.innerHTML = "";
+
+            response.data.forEach(event => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+          <td>${event.name}</td>
+          <td>
+            <button class="status-button">${event.status}</button>
+          </td>
+          <td>
+            <div class="action-buttons">
+              <a href="#" class="action-link edit-link" title="Editar evento" data-event-id="${event.id}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                  <path d="M227.31,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,76.69,147.31,32l24-24L216,52.69Z"></path>
+                </svg>
+              </a>
+              <a href="#" class="action-link delete-link" title="Eliminar evento" data-event-id="${event.id}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                  <path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192V208Z"></path>
+                </svg>
+              </a>
+            </div>
+          </td>
+          <td></td>
+        `;
+                eventsTable.appendChild(row);
+            });
+
+            // Reinicializar event listeners para los botones de acción
+            initializeActionButtons();
+        }
+    } catch (error) {
+        console.error("Error al cargar eventos:", error);
+    }
+}
+
+// Función para cargar datos del evento en el formulario de editar
+async function loadEventDataForEdit(eventId) {
+    try {
+        const response = await getEvents();
+
+        if (response.status && response.data) {
+            const event = response.data.find(e => e.id === eventId);
+
+            if (event) {
+                editEventId.value = event.id;
+                editEventName.value = event.name;
+                editEventDescription.value = event.description;
+                editEventDate.value = event.date;
+                editEventTime.value = event.time;
+                editEventLocation.value = event.location;
+                editEventCapacity.value = event.capacity;
+                editEventPrice.value = event.price;
+                editEventGenre.value = event.genre;
+                editEventArtist.value = event.artist;
+                editEventStatus.value = event.status;
+
+                showEditEventModal();
+            } else {
+                alert("Evento no encontrado");
+            }
+        }
+    } catch (error) {
+        console.error("Error al cargar datos del evento:", error);
+        alert("Error al cargar los datos del evento");
+    }
+}
+
+// Función para inicializar botones de acción
+function initializeActionButtons() {
+    const editButtons = document.querySelectorAll(".edit-link");
+    const deleteButtons = document.querySelectorAll(".delete-link");
+
+    editButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            const eventId = button.getAttribute("data-event-id");
+            loadEventDataForEdit(eventId);
+        });
+    });
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const eventId = button.getAttribute("data-event-id");
+            console.log("Eliminar evento:", eventId);
+            try {
+                const response = await deleteEvent(eventId);
+                if (response.status) {
+                    alert("Evento eliminado exitosamente");
+                    loadEvents();
+                } else {
+                    alert("Error al eliminar el evento: " + response.message);
+                }
+            } catch (error) {
+                console.error("Error al eliminar evento:", error);
+                alert("Error al eliminar el evento");
+            }
+            // Aquí puedes implementar la lógica para eliminar
+        });
+    });
+}
+
+// Función para manejar el envío del formulario de nuevo evento
+async function handleNewEventFormSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(newEventForm);
+    const eventData = {
+        name: formData.get("name"),
+        description: formData.get("description"),
+        date: formData.get("date"),
+        time: formData.get("time"),
+        location: formData.get("location"),
+        capacity: parseInt(formData.get("capacity")),
+        price: parseFloat(formData.get("price")),
+        genre: formData.get("genre"),
+        artist: formData.get("artist"),
+        status: "active"
+    };
+
+    try {
+        const response = await newEvent(eventData);
+
+        if (response.status) {
+            alert("Evento creado exitosamente");
+            hideNewEventModal();
+            loadEvents(); // Recargar la tabla
+        } else {
+            alert("Error al crear el evento: " + response.message);
+        }
+    } catch (error) {
+        console.error("Error al crear evento:", error);
+        alert("Error al crear el evento");
+    }
+}
+
+// Función para manejar el envío del formulario de editar
+async function handleEditEventFormSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(editEventForm);
+    const eventData = {
+        id: formData.get("id"),
+        name: formData.get("name"),
+        description: formData.get("description"),
+        date: formData.get("date"),
+        time: formData.get("time"),
+        location: formData.get("location"),
+        capacity: parseInt(formData.get("capacity")),
+        price: parseFloat(formData.get("price")),
+        genre: formData.get("genre"),
+        artist: formData.get("artist"),
+        status: formData.get("status")
+    };
+
+    try {
+        const response = await updateEvent(eventData);
+
+        if (response.status) {
+            alert("Evento actualizado exitosamente");
+            hideEditEventModal();
+            loadEvents(); // Recargar la tabla
+        } else {
+            alert("Error al actualizar el evento: " + response.message);
+        }
+    } catch (error) {
+        console.error("Error al actualizar evento:", error);
+        alert("Error al actualizar el evento");
+    }
+}
+
+// Event Listeners
+document.addEventListener("DOMContentLoaded", () => {
+    // Botón New Event
+    newEventBtn.addEventListener("click", showNewEventModal);
+
+    // Cerrar modal de nuevo evento
+    cancelNewEvent.addEventListener("click", hideNewEventModal);
+
+    // Cerrar modal de editar
+    closeEditEventModal.addEventListener("click", hideEditEventModal);
+    cancelEditEvent.addEventListener("click", hideEditEventModal);
+
+    // Cerrar modales con clic en background
+    modalBackground.addEventListener("click", (e) => {
+        if (e.target === modalBackground) {
+            if (newEventModal.classList.contains("show")) {
+                hideNewEventModal();
+            } else if (editEventModal.classList.contains("show")) {
+                hideEditEventModal();
+            }
+        }
+    });
+
+    // Envío de formularios
+    newEventForm.addEventListener("submit", handleNewEventFormSubmit);
+    editEventForm.addEventListener("submit", handleEditEventFormSubmit);
+
+    // Cerrar con ESC
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            if (newEventModal.classList.contains("show")) {
+                hideNewEventModal();
+            } else if (editEventModal.classList.contains("show")) {
+                hideEditEventModal();
+            }
+        }
+    });
+
+    // Cargar eventos iniciales
+    loadEvents();
+});
+
+// Función de búsqueda
+function initializeSearch() {
+    const searchInput = document.querySelector(".search-input");
+
+    searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const tableRows = document.querySelectorAll("tbody tr");
+
+        tableRows.forEach(row => {
+            const eventName = row.querySelector("td:first-child").textContent.toLowerCase();
+            if (eventName.includes(searchTerm)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    });
+}
+
+// Función para manejar las pestañas
+function initializeTabs() {
+    const tabLinks = document.querySelectorAll(".tab-link");
+
+    tabLinks.forEach(tab => {
+        tab.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            tabLinks.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            const tabText = tab.querySelector(".tab-text").textContent;
+            console.log("Pestaña seleccionada:", tabText);
+        });
+    });
+}
+
+// Inicializar funcionalidades adicionales
+document.addEventListener("DOMContentLoaded", () => {
+    initializeSearch();
+    initializeTabs();
+});
+
