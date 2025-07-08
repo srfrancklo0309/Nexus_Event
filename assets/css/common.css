@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
 /* Common styles and variables for all pages */
 :root {
   --primary-bg: #111111;
@@ -12,13 +14,28 @@
   --danger-metal: #fa5538;
 }
 
+
+@font-face {
+    font-family: 'UnZialish';
+     src: url('../fonts/UnZialish.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Base styles */
 body {
-  font-family: "Spline Sans", "Noto Sans", sans-serif;
+  /* font-family: "Spline Sans", "Noto Sans", sans-serif; */
+  font-family: 'Merriweather', serif;
   background-color: var(--primary-bg);
   color: var(--text-white);
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+.event-title {
+    font-family: 'UnZialish' !important;
+    letter-spacing: 2px;
 }
 
 .layout-container {
