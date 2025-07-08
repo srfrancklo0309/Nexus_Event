@@ -5,8 +5,8 @@
   <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700" />
 
-  <title>Nexus Events - Subscriptions</title>
-  <link rel="icon" type="image/x-icon" href="../assets/img/pagina-icono1.png" />
+    <title>Nexus Events - Subscriptions</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/pagina-icono1.png" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/common.css">
@@ -19,12 +19,9 @@
       <div class="sidebar">
         <div class="sidebar-content">
           <div class="sidebar-header">
-            <div class="logo-container">
-              <img src="../assets/img/logo-transparent.png" alt="Nexus Event Logo" class="logo">
-            </div>
             <div>
               <h1 class="dashboard-title">Dashboard</h1>
-              <p class="dashboard-subtitle" id="welcomeMessage">Welcome back</p>
+              <p class="dashboard-subtitle" id="welcomeMessage"></p>
             </div>
             <div class="nav-menu">
               <a class="nav-item" href="./dashboard.html">
@@ -82,7 +79,6 @@
                 </div>
                 <span>Logout</span>
               </a>
-
             </div>
           </div>
         </div>
@@ -92,45 +88,18 @@
         <div class="page-header">
           <div class="page-title-section">
             <p class="page-title">Manage Subscriptions</p>
-            <p class="page-subtitle">View, edit, and delete subscriber information.</p>
           </div>
         </div>
 
         <div class="subscriptions-grid-container">
-          <div class="subscriptions-grid">
-            <!-- Suscriptor 1 -->
-            <div class="subscription-card">
-              <div class="subscription-info">
-                <span class="subscription-id">#1001</span>
-                <span class="subscription-email">user1@email.com</span>
-              </div>
-              <div class="subscription-details">
-                <button class="status-button">Premium</button>
-                <button class="status-button">Active</button>
-              </div>
-              <div class="subscription-actions">
-                <a href="#" class="action-links">Edit | Delete</a>
-              </div>
-            </div>
-                        <div class="subscription-card">
-              <div class="subscription-info">
-                <span class="subscription-id">#1001</span>
-                <span class="subscription-email">user1@email.com</span>
-              </div>
-              <div class="subscription-details">
-                <button class="status-button">Premium</button>
-                <button class="status-button">Active</button>
-              </div>
-              <div class="subscription-actions">
-                <a href="#" class="action-links">Edit | Delete</a>
-              </div>
-            </div>
-          </div>
+          <div id="subscriptions-grid" class="subscriptions-grid"></div>
+          <div></div>
         </div>
       </div>
     </div>
   </div>
-  <script src="../scripts/suscriptions.js" type="module"></script>
+    <script src="../scripts/suscriptions.js" type="module"></script>
+
 </body>
 
 </html>
