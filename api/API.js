@@ -11,7 +11,7 @@ const checkResponse = (response) => {
 
 const getData = async (ENDPOINT) => {
   return fetch(`${BASEURL}/${ENDPOINT}`)
-    .then(checkResponse)
+    .then(checkResponse)  
     .then(response => response.json());
 };
 
