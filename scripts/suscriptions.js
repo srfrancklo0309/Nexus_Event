@@ -1,25 +1,28 @@
 import { getSuscriptions, deleteSuscriptions } from "../api/suscriptionAPI.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+    const userName = sessionStorage.getItem('name');
 
+    if (!userName) {
+        window.location.href = "./login.html";
+        return;
+    }
 
-    const userName = sessionStorage.getItem('name') || 'Admin';
     const welcomeMessage = document.getElementById("welcomeMessage");
     if (welcomeMessage) {
         welcomeMessage.textContent = `Welcome back, ${userName}`;
     }
 
-
     const logoutBtn = document.getElementById("logoutBtn");
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
-
             sessionStorage.clear();
-
             window.location.href = "./login.html";
         });
     }
+
+    await showSuscriptions();
 
     async function showSuscriptions() {
         try {
@@ -54,8 +57,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error(error);
         }
     };
-
-    await showSuscriptions();
 
     const deleteButtons = document.querySelectorAll('.delete-btn');
     deleteButtons.forEach(button => {

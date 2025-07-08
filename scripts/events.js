@@ -1,6 +1,6 @@
 import { getEvents, newEvent, updateEvent, deleteEvent } from "../api/eventAPI.js";
 
-let allEvents = [];
+// DOM Elements
 const eventsTable = document.getElementById("events-table");
 const newEventBtn = document.querySelector(".new-event-btn");
 const newEventModal = document.getElementById("newEventModal");
@@ -25,7 +25,7 @@ const editEventStatus = document.getElementById("editEventStatus");
 
 const modalBackground = document.querySelector(".modal-background");
 
-const deleteEventButton = document.querySelector(".delete-link");
+let allEvents = [];
 
 function validateRequiredFields(formData) {
     const requiredFields = ['name', 'description', 'date', 'time', 'location', 'capacity', 'price', 'genre', 'artist'];
@@ -87,6 +87,7 @@ function showNewEventModal() {
     const eventDateInput = document.getElementById("eventDate");
     eventDateInput.min = today;
 }
+
 function hideNewEventModal() {
     newEventModal.classList.remove("show");
     document.body.style.overflow = "";
@@ -100,11 +101,13 @@ function showEditEventModal() {
     const editEventDateInput = document.getElementById("editEventDate");
     editEventDateInput.min = today;
 }
+
 function hideEditEventModal() {
     editEventModal.classList.remove("show");
     document.body.style.overflow = "";
     editEventForm.reset();
 }
+
 async function loadEvents() {
     try {
         const response = await getEvents();
@@ -118,6 +121,7 @@ async function loadEvents() {
         console.error("Error al cargar eventos:", error);
     }
 }
+
 function filterEventsByStatus(status) {
     const filteredEvents = allEvents.filter(event => event.status === status);
     
@@ -214,6 +218,7 @@ function initializeActionButtons() {
         });
     });
 }
+
 async function handleNewEventFormSubmit(e) {
     e.preventDefault();
 
@@ -262,6 +267,7 @@ async function handleNewEventFormSubmit(e) {
         alert("Error al crear el evento");
     }
 }
+
 async function handleEditEventFormSubmit(e) {
     e.preventDefault();
 
@@ -311,61 +317,7 @@ async function handleEditEventFormSubmit(e) {
         alert("Error al actualizar el evento");
     }
 }
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // Obtener el nombre del usuario desde sessionStorage
-    const userName = sessionStorage.getItem('name') || 'Admin';
-    const welcomeMessage = document.getElementById("welcomeMessage");
-    if (welcomeMessage) {
-        welcomeMessage.textContent = `Welcome back, ${userName}`;
-    }
-    
-    newEventBtn.addEventListener("click", showNewEventModal);
 
-    cancelNewEvent.addEventListener("click", hideNewEventModal);
-
-    closeEditEventModal.addEventListener("click", hideEditEventModal);
-    cancelEditEvent.addEventListener("click", hideEditEventModal);
-
-    modalBackground.addEventListener("click", (e) => {
-        if (e.target === modalBackground) {
-            if (newEventModal.classList.contains("show")) {
-                hideNewEventModal();
-            } else if (editEventModal.classList.contains("show")) {
-                hideEditEventModal();
-            }
-        }
-    });
-
-    newEventForm.addEventListener("submit", handleNewEventFormSubmit);
-    editEventForm.addEventListener("submit", handleEditEventFormSubmit);
-
-    // Event listener para el botón de logout
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            
-            // Limpiar session storage
-            sessionStorage.clear();
-            
-            // Redirigir al login
-            window.location.href = "./login.html";
-        });
-    }
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-            if (newEventModal.classList.contains("show")) {
-                hideNewEventModal();
-            } else if (editEventModal.classList.contains("show")) {
-                hideEditEventModal();
-            }
-        }
-    });
-
-    loadEvents();
-});
 function initializeSearch() {
     const searchInput = document.querySelector(".search-input");
 
@@ -383,6 +335,7 @@ function initializeSearch() {
         });
     });
 }
+
 function initializeTabs() {
     const tabLinks = document.querySelectorAll(".tab-link");
 
@@ -403,7 +356,57 @@ function initializeTabs() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const userName = sessionStorage.getItem('name');
+
+    if (!userName) {
+        window.location.href = "./login.html";
+        return;
+    }
+
+    const welcomeMessage = document.getElementById("welcomeMessage");
+    if (welcomeMessage) {
+        welcomeMessage.textContent = `Welcome back, ${userName}`;
+    }
+
     initializeSearch();
     initializeTabs();
+    loadEvents();
+    
+    newEventBtn.addEventListener("click", showNewEventModal);
+    cancelNewEvent.addEventListener("click", hideNewEventModal);
+    closeEditEventModal.addEventListener("click", hideEditEventModal);
+    cancelEditEvent.addEventListener("click", hideEditEventModal);
+
+    modalBackground.addEventListener("click", (e) => {
+        if (e.target === modalBackground) {
+            if (newEventModal.classList.contains("show")) {
+                hideNewEventModal();
+            } else if (editEventModal.classList.contains("show")) {
+                hideEditEventModal();
+            }
+        }
+    });
+
+    newEventForm.addEventListener("submit", handleNewEventFormSubmit);
+    editEventForm.addEventListener("submit", handleEditEventFormSubmit);
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            sessionStorage.clear();
+            window.location.href = "./login.html";
+        });
+    }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            if (newEventModal.classList.contains("show")) {
+                hideNewEventModal();
+            } else if (editEventModal.classList.contains("show")) {
+                hideEditEventModal();
+            }
+        }
+    });
 });
 

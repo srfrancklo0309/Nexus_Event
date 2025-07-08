@@ -1,7 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   
-  // Obtener el nombre del usuario desde sessionStorage
-  const userName = sessionStorage.getItem('name') || 'Admin';
+  const userName = sessionStorage.getItem('name');
+
+  if (!userName) {
+    window.location.href = "./login.html";
+    return;
+  }
+
   const welcomeMessage = document.getElementById("welcomeMessage");
   if (welcomeMessage) {
     welcomeMessage.textContent = `Welcome back, ${userName}`;
@@ -13,10 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
       
-      // Limpiar session storage
       sessionStorage.clear();
-      
-      // Redirigir al login
       window.location.href = "./login.html";
     });
   }
