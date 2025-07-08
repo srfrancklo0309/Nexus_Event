@@ -167,7 +167,12 @@
       "video": "/assets/videos/event_4.mp4"
     }
   ],
-  "suscriptions": [],
+  "suscriptions": [
+    {
+      "id": "28a4",
+      "email": "mateo@mateo.com"
+    }
+  ],
   "contacts": [
     {
       "name": "Juan Pérez",
