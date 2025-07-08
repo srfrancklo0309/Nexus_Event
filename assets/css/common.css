@@ -411,4 +411,63 @@ body {
   .page-title {
     min-width: auto;
   }
-} 
+}
+
+/* Estilos para el botón de logout */
+.logout-btn {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+  margin-top: 16px;
+  color: #f14668 !important;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: rgba(241, 70, 104, 0.1) !important;
+  color: #e0326b !important;
+  transform: translateX(4px);
+}
+
+.logout-btn .nav-icon {
+  color: #f14668;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover .nav-icon {
+  color: #e0326b;
+  transform: translateX(2px);
+}
+
+/* Estilos para el logo */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem 0;
+}
+
+.logo {
+  max-width: 120px;
+  height: auto;
+  filter: drop-shadow(0 2px 8px rgba(225, 6, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 16px rgba(225, 6, 0, 0.5));
+}
+
+/* Responsive para el logo */
+@media (max-width: 768px) {
+  .logo {
+    max-width: 100px;
+  }
+  
+  .logo-container {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+  }
+}

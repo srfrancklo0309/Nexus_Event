@@ -1,9 +1,8 @@
 <html>
 
-    <title>Stitch Design</title>
-    <link rel="icon" type="image/x-icon" href="../assets/img/pagina-icono1.png" />
-
-  <title>Stitch Design</title>
+<head>
+  <title>Nexus Events - Events</title>
+  <link rel="icon" type="image/x-icon" href="../assets/img/pagina-icono1.png" />
   <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -17,9 +16,12 @@
       <div class="sidebar">
         <div class="sidebar-content">
           <div class="sidebar-header">
+            <div class="logo-container">
+              <img src="../assets/img/logo-transparent.png" alt="Nexus Event Logo" class="logo">
+            </div>
             <div>
               <h1 class="dashboard-title">Dashboard</h1>
-              <p class="dashboard-subtitle">Welcome back, Alex</p>
+              <p class="dashboard-subtitle" id="welcomeMessage">Welcome back</p>
             </div>
             <div class="nav-menu">
               <a class="nav-item" href="./dashboard.html">
@@ -65,6 +67,17 @@
                   </svg>
                 </div>
                 <span>Contacts</span>
+              </a>
+              <a class="nav-item logout-btn" href="#" id="logoutBtn">
+                <div class="nav-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <path
+                      d="M112,216a8,8,0,0,1-8,8H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h56a8,8,0,0,1,0,16H48V208h56A8,8,0,0,1,112,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L196.69,120H104a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,221.66,122.34Z">
+                    </path>
+                  </svg>
+                </div>
+                <span>Logout</span>
               </a>
 
             </div>
@@ -128,55 +141,70 @@
     <div class="modal-background"></div>
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Crear Nuevo Evento</h2>
+        <h2 class="modal-title">Create Event</h2>
       </div>
       <div class="modal-body">
         <form id="newEventForm">
           <div class="form-group">
-            <label for="eventName">Nombre del Evento</label>
+            <label for="eventName">Event Name</label>
             <input type="text" id="eventName" name="name" required>
           </div>
           <div class="form-group">
-            <label for="eventDescription">Descripción</label>
+            <label for="eventDescription">Description</label>
             <textarea id="eventDescription" name="description" rows="3" required></textarea>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="eventDate">Fecha</label>
+              <label for="eventDate">Date</label>
               <input type="date" id="eventDate" name="date" required>
             </div>
             <div class="form-group">
-              <label for="eventTime">Hora</label>
+              <label for="eventTime">Time</label>
               <input type="time" id="eventTime" name="time" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="eventLocation">Ubicación</label>
+            <label for="eventLocation">Location</label>
             <input type="text" id="eventLocation" name="location" required>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="eventCapacity">Capacidad</label>
+              <label for="eventCapacity">Capacity</label>
               <input type="number" id="eventCapacity" name="capacity" min="1" required>
             </div>
             <div class="form-group">
-              <label for="eventPrice">Precio</label>
+              <label for="eventPrice">Price</label>
               <input type="number" id="eventPrice" name="price" min="0" step="0.01" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="eventGenre">Género</label>
-              <input type="text" id="eventGenre" name="genre" required>
+              <label for="eventGenre">Genre</label>
+              <select id="eventGenre" name="genre" required>
+                <option value="">Select a genre</option>
+                <option value="Alternative Rock">Alternative Rock</option>
+                <option value="Classic Rock">Classic Rock</option>
+                <option value="Hard Rock">Hard Rock</option>
+                <option value="Heavy Metal">Heavy Metal</option>
+                <option value="Indie Rock">Indie Rock</option>
+                <option value="Nu Metal">Nu Metal</option>
+                <option value="Pop Rock">Pop Rock</option>
+                <option value="Progressive Rock">Progressive Rock</option>
+                <option value="Psychedelic Rock">Psychedelic Rock</option>
+                <option value="Punk Rock">Punk Rock</option>
+                <option value="Rock & Roll">Rock & Roll</option>
+                <option value="Southern Rock">Southern Rock</option>
+                <option value="Thrash Metal">Thrash Metal</option>
+              </select>
             </div>
             <div class="form-group">
-              <label for="eventArtist">Artistas</label>
+              <label for="eventArtist">Artists</label>
               <input type="text" id="eventArtist" name="artist" required>
             </div>
           </div>
           <div class="form-actions">
-            <button type="button" class="btn-cancel" id="cancelNewEvent">Cancelar</button>
-            <button type="submit" class="btn-submit">Crear Evento</button>
+            <button type="button" class="btn-cancel" id="cancelNewEvent">Cancel</button>
+            <button type="submit" class="btn-submit">Create Event</button>
           </div>
         </form>
       </div>
@@ -187,7 +215,7 @@
     <div class="modal-background"></div>
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Editar Evento</h2>
+        <h2 class="modal-title">Edit Event</h2>
         <button class="modal-close" id="closeEditEventModal">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
             <path
@@ -200,41 +228,56 @@
         <form id="editEventForm">
           <input type="hidden" id="editEventId" name="id">
           <div class="form-group">
-            <label for="editEventName">Nombre del Evento</label>
+            <label for="editEventName">Event Name</label>
             <input type="text" id="editEventName" name="name" required>
           </div>
           <div class="form-group">
-            <label for="editEventDescription">Descripción</label>
+            <label for="editEventDescription">Description</label>
             <textarea id="editEventDescription" name="description" rows="3" required></textarea>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="editEventDate">Fecha</label>
+              <label for="editEventDate">Date</label>
               <input type="date" id="editEventDate" name="date" required>
             </div>
             <div class="form-group">
-              <label for="editEventTime">Hora</label>
+              <label for="editEventTime">Time</label>
               <input type="time" id="editEventTime" name="time" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="editEventLocation">Ubicación</label>
+            <label for="editEventLocation">Location</label>
             <input type="text" id="editEventLocation" name="location" required>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="editEventCapacity">Capacidad</label>
+              <label for="editEventCapacity">Capacity</label>
               <input type="number" id="editEventCapacity" name="capacity" min="1" required>
             </div>
             <div class="form-group">
-              <label for="editEventPrice">Precio</label>
+              <label for="editEventPrice">Price</label>
               <input type="number" id="editEventPrice" name="price" min="0" step="0.01" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="editEventGenre">Género</label>
-              <input type="text" id="editEventGenre" name="genre" required>
+              <label for="editEventGenre">Genre</label>
+              <select id="editEventGenre" name="genre" required>
+                <option value="">Select a genre</option>
+                <option value="Alternative Rock">Alternative Rock</option>
+                <option value="Classic Rock">Classic Rock</option>
+                <option value="Hard Rock">Hard Rock</option>
+                <option value="Heavy Metal">Heavy Metal</option>
+                <option value="Indie Rock">Indie Rock</option>
+                <option value="Nu Metal">Nu Metal</option>
+                <option value="Pop Rock">Pop Rock</option>
+                <option value="Progressive Rock">Progressive Rock</option>
+                <option value="Psychedelic Rock">Psychedelic Rock</option>
+                <option value="Punk Rock">Punk Rock</option>
+                <option value="Rock & Roll">Rock & Roll</option>
+                <option value="Southern Rock">Southern Rock</option>
+                <option value="Thrash Metal">Thrash Metal</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="editEventArtist">Artistas</label>
@@ -242,16 +285,16 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="editEventStatus">Estado</label>
+            <label for="editEventStatus">Status</label>
             <select id="editEventStatus" name="status" required>
-              <option value="active">Activo</option>
-              <option value="inactive">Inactivo</option>
-              <option value="canceled">Cancelado</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="canceled">Canceled</option>
             </select>
           </div>
           <div class="form-actions">
-            <button type="button" class="btn-cancel" id="cancelEditEvent">Cancelar</button>
-            <button type="submit" class="btn-submit">Actualizar Evento</button>
+            <button type="button" class="btn-cancel" id="cancelEditEvent">Cancel</button>
+            <button type="submit" class="btn-submit">Update Event</button>
           </div>
         </form>
       </div>
