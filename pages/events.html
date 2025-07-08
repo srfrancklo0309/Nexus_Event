@@ -91,11 +91,14 @@
 
         <div class="tabs-container">
           <div class="tabs-wrapper">
-            <a class="tab-link active" href="#">
+            <a class="tab-link active" href="#" data-status="active">
               <p class="tab-text">Active</p>
             </a>
-            <a class="tab-link" href="#">
+            <a class="tab-link" href="#" data-status="inactive">
               <p class="tab-text">Inactive</p>
+            </a>
+            <a class="tab-link" href="#" data-status="canceled">
+              <p class="tab-text">Canceled</p>
             </a>
           </div>
         </div>
@@ -180,7 +183,6 @@
     </div>
   </div>
 
-  <!-- Modal para editar evento -->
   <div id="editEventModal" class="modal">
     <div class="modal-background"></div>
     <div class="modal-content">
@@ -244,6 +246,7 @@
             <select id="editEventStatus" name="status" required>
               <option value="active">Activo</option>
               <option value="inactive">Inactivo</option>
+              <option value="canceled">Cancelado</option>
             </select>
           </div>
           <div class="form-actions">

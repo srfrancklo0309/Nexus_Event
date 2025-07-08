@@ -1,19 +1,16 @@
 import { getEvents, newEvent, updateEvent, deleteEvent } from "../api/eventAPI.js";
 
-// Elementos del DOM
+let allEvents = [];
 const eventsTable = document.getElementById("events-table");
 const newEventBtn = document.querySelector(".new-event-btn");
 const newEventModal = document.getElementById("newEventModal");
 const cancelNewEvent = document.getElementById("cancelNewEvent");
 const newEventForm = document.getElementById("newEventForm");
 
-// Elementos del modal de editar
 const editEventModal = document.getElementById("editEventModal");
 const closeEditEventModal = document.getElementById("closeEditEventModal");
 const cancelEditEvent = document.getElementById("cancelEditEvent");
 const editEventForm = document.getElementById("editEventForm");
-
-// Campos del formulario de editar
 const editEventId = document.getElementById("editEventId");
 const editEventName = document.getElementById("editEventName");
 const editEventDescription = document.getElementById("editEventDescription");
@@ -28,46 +25,45 @@ const editEventStatus = document.getElementById("editEventStatus");
 
 const modalBackground = document.querySelector(".modal-background");
 
-
 const deleteEventButton = document.querySelector(".delete-link");
-
-// Función para mostrar el modal
 function showNewEventModal() {
     newEventModal.classList.add("show");
     document.body.style.overflow = "hidden";
 }
-
-// Función para ocultar el modal
 function hideNewEventModal() {
     newEventModal.classList.remove("show");
     document.body.style.overflow = "";
-    newEventForm.reset(); // Limpiar formulario
+    newEventForm.reset();
 }
-
-// Función para mostrar el modal de editar
 function showEditEventModal() {
     editEventModal.classList.add("show");
     document.body.style.overflow = "hidden";
 }
-
-// Función para ocultar el modal de editar
 function hideEditEventModal() {
     editEventModal.classList.remove("show");
     document.body.style.overflow = "";
-    editEventForm.reset(); // Limpiar formulario
+    editEventForm.reset();
 }
-
-// Función para cargar eventos en la tabla
 async function loadEvents() {
     try {
         const response = await getEvents();
 
         if (response.status && response.data && response.data.length > 0) {
-            eventsTable.innerHTML = "";
-
-            response.data.forEach(event => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
+            allEvents = response.data;
+            
+            filterEventsByStatus('active');
+        }
+    } catch (error) {
+        console.error("Error al cargar eventos:", error);
+    }
+}
+function filterEventsByStatus(status) {
+    const filteredEvents = allEvents.filter(event => event.status === status);
+    
+    eventsTable.innerHTML = "";
+    filteredEvents.forEach(event => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
           <td>${event.name}</td>
           <td>
             <button class="status-button">${event.status}</button>
@@ -88,18 +84,13 @@ async function loadEvents() {
           </td>
           <td></td>
         `;
-                eventsTable.appendChild(row);
-            });
+        eventsTable.appendChild(row);
+    });
 
-            // Reinicializar event listeners para los botones de acción
-            initializeActionButtons();
-        }
-    } catch (error) {
-        console.error("Error al cargar eventos:", error);
-    }
+    initializeActionButtons();
 }
 
-// Función para cargar datos del evento en el formulario de editar
+
 async function loadEventDataForEdit(eventId) {
     try {
         const response = await getEvents();
@@ -130,8 +121,6 @@ async function loadEventDataForEdit(eventId) {
         alert("Error al cargar los datos del evento");
     }
 }
-
-// Función para inicializar botones de acción
 function initializeActionButtons() {
     const editButtons = document.querySelectorAll(".edit-link");
     const deleteButtons = document.querySelectorAll(".delete-link");
@@ -161,12 +150,9 @@ function initializeActionButtons() {
                 console.error("Error al eliminar evento:", error);
                 alert("Error al eliminar el evento");
             }
-            // Aquí puedes implementar la lógica para eliminar
         });
     });
 }
-
-// Función para manejar el envío del formulario de nuevo evento
 async function handleNewEventFormSubmit(e) {
     e.preventDefault();
 
@@ -190,7 +176,7 @@ async function handleNewEventFormSubmit(e) {
         if (response.status) {
             alert("Evento creado exitosamente");
             hideNewEventModal();
-            loadEvents(); // Recargar la tabla
+            loadEvents();
         } else {
             alert("Error al crear el evento: " + response.message);
         }
@@ -199,8 +185,6 @@ async function handleNewEventFormSubmit(e) {
         alert("Error al crear el evento");
     }
 }
-
-// Función para manejar el envío del formulario de editar
 async function handleEditEventFormSubmit(e) {
     e.preventDefault();
 
@@ -225,7 +209,7 @@ async function handleEditEventFormSubmit(e) {
         if (response.status) {
             alert("Evento actualizado exitosamente");
             hideEditEventModal();
-            loadEvents(); // Recargar la tabla
+            loadEvents();
         } else {
             alert("Error al actualizar el evento: " + response.message);
         }
@@ -234,20 +218,14 @@ async function handleEditEventFormSubmit(e) {
         alert("Error al actualizar el evento");
     }
 }
-
-// Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
-    // Botón New Event
     newEventBtn.addEventListener("click", showNewEventModal);
 
-    // Cerrar modal de nuevo evento
     cancelNewEvent.addEventListener("click", hideNewEventModal);
 
-    // Cerrar modal de editar
     closeEditEventModal.addEventListener("click", hideEditEventModal);
     cancelEditEvent.addEventListener("click", hideEditEventModal);
 
-    // Cerrar modales con clic en background
     modalBackground.addEventListener("click", (e) => {
         if (e.target === modalBackground) {
             if (newEventModal.classList.contains("show")) {
@@ -258,11 +236,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Envío de formularios
     newEventForm.addEventListener("submit", handleNewEventFormSubmit);
     editEventForm.addEventListener("submit", handleEditEventFormSubmit);
 
-    // Cerrar con ESC
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
             if (newEventModal.classList.contains("show")) {
@@ -273,11 +249,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Cargar eventos iniciales
     loadEvents();
 });
-
-// Función de búsqueda
 function initializeSearch() {
     const searchInput = document.querySelector(".search-input");
 
@@ -295,8 +268,6 @@ function initializeSearch() {
         });
     });
 }
-
-// Función para manejar las pestañas
 function initializeTabs() {
     const tabLinks = document.querySelectorAll(".tab-link");
 
@@ -305,15 +276,17 @@ function initializeTabs() {
             e.preventDefault();
 
             tabLinks.forEach(t => t.classList.remove("active"));
+            
             tab.classList.add("active");
 
-            const tabText = tab.querySelector(".tab-text").textContent;
-            console.log("Pestaña seleccionada:", tabText);
+            const status = tab.getAttribute("data-status");
+            console.log("Pestaña seleccionada:", status);
+            
+            filterEventsByStatus(status);
         });
     });
 }
 
-// Inicializar funcionalidades adicionales
 document.addEventListener("DOMContentLoaded", () => {
     initializeSearch();
     initializeTabs();

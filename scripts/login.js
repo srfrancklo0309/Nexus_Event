@@ -3,11 +3,10 @@ import { getUsers } from '../api/userAPI.js';
 const loginButton = document.getElementById('login-button');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
-const name = document.getElementById('name');
 const notificationToast = document.getElementById('notification-toast');
 
 function validateLogin(users, username, password) {
-    console.log('Validando con datos:', { name, username, password });
+    console.log('Validando con datos:', { username, password });
     console.log('Usuarios disponibles:', users);
 
     const user = users.find(user => 
@@ -34,9 +33,9 @@ function validateLogin(users, username, password) {
     }
 }
 
-function isAdmin(name, username, users) {
-    console.log('Verificando si es admin:', { name, username });
-    const user = users.find(user => user.name === name && user.username === username);
+function isAdmin(username, users) {
+    console.log('Verificando si es admin:', { username });
+    const user = users.find(user => user.username === username);
     
     console.log('Usuario para verificar admin:', user);
     
@@ -48,7 +47,7 @@ function isAdmin(name, username, users) {
 }
 
 function isFieldEmpty() {
-    if (username.value === '' || password.value === '' || name.value === '') {
+    if (username.value === '' || password.value === '') {
         notificationToast.innerHTML = `
             <div class="notification-header">
                 <h4 class="notification-title">Error in login</h4>
@@ -73,8 +72,7 @@ loginButton.addEventListener('click', async () => {
         
         const usernameValue = username.value;
         const passwordValue = password.value;
-        const nameValue = name.value;
-        console.log('Credenciales ingresadas:', { name: nameValue, username: usernameValue, password: passwordValue });
+        console.log('Credenciales ingresadas:', { username: usernameValue, password: passwordValue });
 
         if (!isFieldEmpty()) {
             console.log('Campos no están vacíos, validando credenciales...');
@@ -82,16 +80,16 @@ loginButton.addEventListener('click', async () => {
             if (validateLogin(users, usernameValue, passwordValue)) {
                 console.log('Credenciales válidas, verificando si es admin...');
                 
-                if (isAdmin(nameValue, usernameValue, users)) {
+                if (isAdmin(usernameValue, users)) {
                     console.log('Usuario es admin, redirigiendo a dashboard...');
                     window.location.href = '../pages/dashboard.html';
-                    sessionStorage.setItem('name', nameValue);
-                    sessionStorage.setItem('username', usernameValue);
+                    sessionStorage.setItem('username',usernameValue);
+                    sessionStorage.setItem('name',users.find(user => user.username === usernameValue).name)
                 } else {
                     console.log('Usuario no es admin, redirigiendo a events...');
                     window.location.href = '../index.html';
-                    sessionStorage.setItem('name', nameValue);
                     sessionStorage.setItem('username', usernameValue);
+                    sessionStorage.setItem('name',users.find(user => user.username === usernameValue).name);
                 }
             } else {
                 console.log('Credenciales inválidas');
