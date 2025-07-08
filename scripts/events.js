@@ -312,6 +312,14 @@ async function handleEditEventFormSubmit(e) {
     }
 }
 document.addEventListener("DOMContentLoaded", () => {
+    
+    // Obtener el nombre del usuario desde sessionStorage
+    const userName = sessionStorage.getItem('name') || 'Admin';
+    const welcomeMessage = document.getElementById("welcomeMessage");
+    if (welcomeMessage) {
+        welcomeMessage.textContent = `Welcome back, ${userName}`;
+    }
+    
     newEventBtn.addEventListener("click", showNewEventModal);
 
     cancelNewEvent.addEventListener("click", hideNewEventModal);
