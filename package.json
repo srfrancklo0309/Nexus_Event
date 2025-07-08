@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "server": "json-server --watch assets/db/db.json",
+    "server-dev": "json-server --watch assets/db/db.json",
+    "server": "json-server assets/db/db.json",
     "frontend": "live-server --port=5500 --watch=.",
     "dev": "npm run server & npm run frontend",
     "test": "echo \"Error: no test specified\" && exit 1"

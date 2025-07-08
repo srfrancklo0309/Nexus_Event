@@ -17,6 +17,21 @@
   ],
   "events": [
     {
+      "id": "1",
+      "name": "Rock Revolution Festival",
+      "description": "Festival de rock con las mejores bandas del momento. Una noche llena de energía y música en vivo.",
+      "date": "2024-06-15",
+      "time": "19:00",
+      "location": "Estadio Municipal",
+      "capacity": 5000,
+      "price": 45,
+      "genre": "Rock",
+      "artist": "Multiple Artists",
+      "status": "active",
+      "cover": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_1.mp4"
+    },
+    {
       "id": "2",
       "name": "Punk Explosion",
       "description": "Noche de punk rock puro con bandas locales e internacionales. Mosh pit garantizado.",
@@ -28,7 +43,8 @@
       "genre": "Punk Rock",
       "artist": "The Rebels, Street Punks, Anarchy Now",
       "status": "active",
-      "cover": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_2.mp4"
     },
     {
       "id": "3",
@@ -42,7 +58,8 @@
       "genre": "Metal",
       "artist": "Iron Fist, Thunder Storm, Dark Lords",
       "status": "canceled",
-      "cover": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_3.mp4"
     },
     {
       "id": "4",
@@ -56,7 +73,8 @@
       "genre": "Rock 80s",
       "artist": "80s Tribute Band, Rock Legends Cover",
       "status": "inactive",
-      "cover": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_4.mp4"
     },
     {
       "id": "5",
@@ -70,7 +88,8 @@
       "genre": "Alternative Rock",
       "artist": "The Alternative, Modern Rockers, Indie Souls",
       "status": "active",
-      "cover": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_5.mp4"
     },
     {
       "id": "6",
@@ -84,7 +103,8 @@
       "genre": "Hard Rock",
       "artist": "Heavy Metal Kings, Rock Warriors, Thunder Force",
       "status": "active",
-      "cover": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_6.mp4"
     },
     {
       "id": "7",
@@ -98,7 +118,8 @@
       "genre": "Punk/Metal",
       "artist": "Punk Attack, Metal Crushers, Battle Bands",
       "status": "active",
-      "cover": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_1.mp4"
     },
     {
       "id": "8",
@@ -112,7 +133,8 @@
       "genre": "Classic Rock",
       "artist": "Classic Rockers, Vintage Vibes, Rock Legends Cover",
       "status": "active",
-      "cover": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_2.mp4"
     },
     {
       "id": "9",
@@ -126,7 +148,8 @@
       "genre": "Progressive Rock",
       "artist": "Prog Masters, Fusion Rock, Experimental Sound",
       "status": "active",
-      "cover": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_3.mp4"
     },
     {
       "id": "10",
@@ -140,9 +163,19 @@
       "genre": "Rock Variado",
       "artist": "Multiple Rock Bands",
       "status": "active",
-      "cover": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop"
+      "cover": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
+      "video": "/assets/videos/event_4.mp4"
     }
   ],
-  "suscriptions": [],
+  "suscriptions": [
+    {
+      "id": "12d4",
+      "email": "mateo@mateo.com"
+    },
+    {
+      "id": "6c70",
+      "email": "prueba@prueba.com"
+    }
+  ],
   "contacts": []
 }
