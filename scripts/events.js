@@ -26,9 +26,66 @@ const editEventStatus = document.getElementById("editEventStatus");
 const modalBackground = document.querySelector(".modal-background");
 
 const deleteEventButton = document.querySelector(".delete-link");
+
+function validateRequiredFields(formData) {
+    const requiredFields = ['name', 'description', 'date', 'time', 'location', 'capacity', 'price', 'genre', 'artist'];
+    const emptyFields = [];
+    
+    requiredFields.forEach(field => {
+        const value = formData.get(field);
+        if (!value || value.trim() === '') {
+            emptyFields.push(field);
+        }
+    });
+    
+    return emptyFields;
+}
+
+function validateDate(dateString, timeString) {
+    const selectedDateTime = new Date(`${dateString}T${timeString}`);
+    const currentDateTime = new Date();
+    
+    currentDateTime.setMinutes(currentDateTime.getMinutes() - 1);
+    
+    return selectedDateTime > currentDateTime;
+}
+
+function showValidationErrors(errors) {
+    let errorMessage = "Por favor corrige los siguientes errores:\n\n";
+    
+    if (errors.emptyFields && errors.emptyFields.length > 0) {
+        errorMessage += "Campos requeridos vacíos:\n";
+        errors.emptyFields.forEach(field => {
+            const fieldNames = {
+                'name': 'Nombre del evento',
+                'description': 'Descripción',
+                'date': 'Fecha',
+                'time': 'Hora',
+                'location': 'Ubicación',
+                'capacity': 'Capacidad',
+                'price': 'Precio',
+                'genre': 'Género',
+                'artist': 'Artistas'
+            };
+            errorMessage += `- ${fieldNames[field]}\n`;
+        });
+        errorMessage += "\n";
+    }
+    
+    if (errors.invalidDate) {
+        errorMessage += "La fecha y hora del evento no pueden ser en el pasado.\n";
+    }
+    
+    alert(errorMessage);
+}
+
 function showNewEventModal() {
     newEventModal.classList.add("show");
     document.body.style.overflow = "hidden";
+    
+    const today = new Date().toISOString().split('T')[0];
+    const eventDateInput = document.getElementById("eventDate");
+    eventDateInput.min = today;
 }
 function hideNewEventModal() {
     newEventModal.classList.remove("show");
@@ -38,6 +95,10 @@ function hideNewEventModal() {
 function showEditEventModal() {
     editEventModal.classList.add("show");
     document.body.style.overflow = "hidden";
+    
+    const today = new Date().toISOString().split('T')[0];
+    const editEventDateInput = document.getElementById("editEventDate");
+    editEventDateInput.min = today;
 }
 function hideEditEventModal() {
     editEventModal.classList.remove("show");
@@ -157,6 +218,22 @@ async function handleNewEventFormSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData(newEventForm);
+    
+    const emptyFields = validateRequiredFields(formData);
+    
+    const dateValue = formData.get("date");
+    const timeValue = formData.get("time");
+    const isDateValid = validateDate(dateValue, timeValue);
+    
+    if (emptyFields.length > 0 || !isDateValid) {
+        const errors = {
+            emptyFields: emptyFields,
+            invalidDate: !isDateValid
+        };
+        showValidationErrors(errors);
+        return;
+    }
+
     const eventData = {
         name: formData.get("name"),
         description: formData.get("description"),
@@ -189,6 +266,22 @@ async function handleEditEventFormSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData(editEventForm);
+    
+    const emptyFields = validateRequiredFields(formData);
+    
+    const dateValue = formData.get("date");
+    const timeValue = formData.get("time");
+    const isDateValid = validateDate(dateValue, timeValue);
+            
+    if (emptyFields.length > 0 || !isDateValid) {
+        const errors = {
+            emptyFields: emptyFields,
+            invalidDate: !isDateValid
+        };
+        showValidationErrors(errors);
+        return;
+    }
+
     const eventData = {
         id: formData.get("id"),
         name: formData.get("name"),
@@ -219,6 +312,14 @@ async function handleEditEventFormSubmit(e) {
     }
 }
 document.addEventListener("DOMContentLoaded", () => {
+    
+    // Obtener el nombre del usuario desde sessionStorage
+    const userName = sessionStorage.getItem('name') || 'Admin';
+    const welcomeMessage = document.getElementById("welcomeMessage");
+    if (welcomeMessage) {
+        welcomeMessage.textContent = `Welcome back, ${userName}`;
+    }
+    
     newEventBtn.addEventListener("click", showNewEventModal);
 
     cancelNewEvent.addEventListener("click", hideNewEventModal);
@@ -238,6 +339,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     newEventForm.addEventListener("submit", handleNewEventFormSubmit);
     editEventForm.addEventListener("submit", handleEditEventFormSubmit);
+
+    // Event listener para el botón de logout
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            
+            // Limpiar session storage
+            sessionStorage.clear();
+            
+            // Redirigir al login
+            window.location.href = "./login.html";
+        });
+    }
 
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
