@@ -1,37 +1,46 @@
 import { initCarousel, loadVideos } from './scripts/bulma.js';
 import { getEvents, newEvent } from './api/eventAPI.js';
 
+async function loadEvents () {
+  const { data: events } = await getEvents();
+  const eventsGrid = document.getElementById('events-grid');
+  if (!eventsGrid) return;
+
+  // Limpiar el contenedor
+  eventsGrid.innerHTML = '';
+
+  // Tomar solo los primeros 6 eventos
+  const maxEvents = 6;
+  const displayEvents = events.slice(0, maxEvents);
+
+  displayEvents.forEach(event => {
+    const priceText = event.price && event.price > 0 ? `$${event.price}` : 'Gratis';
+    const eventCard = document.createElement('div');
+    eventCard.className = 'event-card';
+    eventCard.innerHTML = `
+      <div class="event-image-container">
+        <img class="event-image-img" src="${event.cover}" alt="${event.name}">
+        <video class="event-image-video" src="${event.video}" loop muted></video>
+        <div class="event-image-text">
+          <p class="event-title">${event.name}</p>
+          <p class="event-description">${event.description}</p>
+        </div>
+        <div class="event-details">
+          <p><strong>Ubicación:</strong> ${event.location}</p>
+          <p><strong>Fecha:</strong> ${event.date}</p>
+          <p><strong>Hora:</strong> ${event.time}</p>
+          <p><strong>Artistas:</strong> ${event.artist}</p>
+          <span class="event-price">${priceText}</span>
+        </div>
+      </div>
+    `;
+    eventsGrid.appendChild(eventCard);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   initCarousel();
+  await loadEvents();
   loadVideos('event-image-video');
   
-  let { data: events } = await getEvents();
-  console.log(events);
-
-  document.addEventListener('keydown', async (evt) => {
-    if (evt.key === 'Enter') {
-      const response = await newEvent({
-        id: 16,
-        name: "Rock al parque",
-        description: "Festival de rock con las mejores bandas del momento. Una noche llena de energía y música en vivo.",
-        date: "2024-06-15",
-        time: "19:00",
-        location: "La Macarena",
-        capacity: 6000,
-        price: 0.00,
-        genre: "Rock",
-        artist: "Multiple Artists",
-        status: "active",
-        cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop"
-      });
-      if (response.status) {
-        const { data } = await getEvents();
-        events = data;
-        console.log(response.message);
-      } else {
-        console.error(response.message)
-      }
-
-    }
-  })
 });
