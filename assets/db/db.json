@@ -143,5 +143,56 @@
     }
   ],
   "suscriptions": [],
-  "contacts": []
+  "contacts": [
+    {
+      "name": "Juan Pérez",
+      "email": "juan.perez@email.com",
+      "message": "Me gustaría recibir más información sobre los eventos."
+    },
+    {
+      "name": "María García",
+      "email": "maria.garcia@email.com",
+      "message": "¿Hay descuentos para grupos grandes?"
+    },
+    {
+      "name": "Carlos López",
+      "email": "carlos.lopez@email.com",
+      "message": "¿Puedo llevar a mi familia al evento?"
+    },
+    {
+      "name": "Ana Torres",
+      "email": "ana.torres@email.com",
+      "message": "¿Cuándo será el próximo festival?"
+    },
+    {
+      "name": "Luis Fernández",
+      "email": "luis.fernandez@email.com",
+      "message": "Estoy interesado en ser voluntario."
+    },
+    {
+      "name": "Sofía Ramírez",
+      "email": "sofia.ramirez@email.com",
+      "message": "¿Dónde puedo comprar entradas?"
+    },
+    {
+      "name": "Miguel Sánchez",
+      "email": "miguel.sanchez@email.com",
+      "message": "¿Habrá estacionamiento disponible?"
+    },
+    {
+      "name": "Lucía Gómez",
+      "email": "lucia.gomez@email.com",
+      "message": "¿Puedo cambiar mi entrada de fecha?"
+    },
+    {
+      "name": "Diego Herrera",
+      "email": "diego.herrera@email.com",
+      "message": "¿Qué artistas estarán presentes?"
+    },
+    {
+      "name": "Valentina Ruiz",
+      "email": "valentina.ruiz@email.com",
+      "message": "¿El evento es apto para niños?"
+    }
+  ]
 }

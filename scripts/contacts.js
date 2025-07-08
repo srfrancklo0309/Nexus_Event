@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('contactsTableContainer');
 
   // Función para renderizar la tabla
-  function renderTable(data) {
-    if (!data || data.length === 0) {
+  function renderTable(contacts) {
+    if (!contacts || contacts.length === 0) {
       container.innerHTML = '<p class="has-text-centered">No hay contactos guardados.</p>';
       return;
     }
@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             </tr>
           </thead>
           <tbody>
-            ${data.map(contact => `
+            ${contacts.map(({name, email, message}) => `
               <tr>
-                <td>${contact.name}</td>
-                <td>${contact.email}</td>
-                <td>${contact.message}</td>
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${message}</td>
               </tr>
             `).join('')}
           </tbody>
