@@ -167,6 +167,15 @@
       "video": "/assets/videos/event_4.mp4"
     }
   ],
-  "suscriptions": [],
+  "suscriptions": [
+    {
+      "id": "12d4",
+      "email": "mateo@mateo.com"
+    },
+    {
+      "id": "6c70",
+      "email": "prueba@prueba.com"
+    }
+  ],
   "contacts": []
 }

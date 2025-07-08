@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/common.css">
   <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
@@ -32,17 +33,7 @@
         </div>
       </div>
 
-      <div class="navbar-menu">
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a href="./pages/login.html" class="button is-primary">
-                <span>Login</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="navbar-menu"></div>
     </nav>
 
     <div class="main-content">
@@ -52,34 +43,28 @@
             <div class="carousel-wrapper">
               <div class="carousel-slide active">
                 <div class="featured-event-card">
-                  <div class="event-image"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDLIY6NzbXTD177vdPitzr4Frv1Obfnajsx-l4dm_T1K5EeIXPP3Z9fIVuX2ZMBXlL3AMhns7E-B9Wc9qaRwdlmWeXvMN8VxDwQY1C_ku2wvo1hv00Q9BkbwTfqqJ_OPPiPQfCEmGzILNqeeNsxtdypH2YbJ4m6_JiGliQFHKBzcKhUER9I9VGsB9bNYZTX5tYHI-8wh-LQmYOmbL4bU5Mg8EC2m4rMVFGq04rczKD2y8CXGPi98_i8ZsPPaxk37zFAACyi2kIyS9z-");'>
-                  </div>
+                  <img class="event-image" src="./assets/img/event_1.jpg" />
                   <div>
-                    <p class="event-title">Live Music Concert</p>
-                    <p class="event-description">Experience the thrill of live music with top artists.</p>
+                    <p class="event-title">Top Guitar Performer</p>
+                    <p class="event-description">Meet the best guitar performer ever.</p>
                   </div>
                 </div>
               </div>
               <div class="carousel-slide">
                 <div class="featured-event-card">
-                  <div class="event-image"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyzj3aM8Qt0oCMhkmdwi45jyo2twnfM1DylKpiRtibr4cajPkcGzjNhTK8xkw3qw36yV6_jxqTmkRGLhBbUAUBGKtO8qQqHL8cRFsOoGRkU0xZyDO3pCbQJrITGbE3Yj6qTVqdgCR-fPmM8ccDpqcknF2PLIhhpqyQWEiKxGLA_fDGkLqaX9ZJ9hi4DnRRqfiTjuKlVXLqy-105CGjcofnoVVoio7dA0x8AV1YSiW5mjdWlIrTWZrYkB8WDCaQ8eJAxhjREh4pEnQm");'>
-                  </div>
+                  <img class="event-image" src="./assets/img/event_2.jpg"/ >
                   <div>
-                    <p class="event-title">Summer Music Festival</p>
+                    <p class="event-title">Rock Park Festival</p>
                     <p class="event-description">Join us for a weekend of music, art, and community.</p>
                   </div>
                 </div>
               </div>
               <div class="carousel-slide">
                 <div class="featured-event-card">
-                  <div class="event-image"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQYRSawTxCA33T_ZAD0f0nHcICC-oh75GYaPtKFvoi7e1S5YFPNEHgeU8knNnF6vy1gwfqihzRrwLVFgiYNeyq_NC7GuY7bSEZRrwW8RvudfQEhlfYBGmdW3BcD1RSiFG-InnkC0KnAObudwy-EHJTqih7IYNKbkAUR3CF6NpzHGAT7-Y8B8ObLXkrddqPhj4VjgZs0Fzg8HOJ6Q8ugLMqxtxnrk35DUTjQnHWoYgmXPavVA2WsmL1uKA_8PIdVhbx6YR-n45mrWqN");'>
-                  </div>
+                  <img class="event-image" src="./assets/img/event_3.jpg" />
                   <div>
-                    <p class="event-title">Sports Tournament</p>
-                    <p class="event-description">Compete or cheer in our annual sports tournament.</p>
+                    <p class="event-title">Live Music Concert</p>
+                    <p class="event-description">Experience the thrill of live music with top artists.</p>
                   </div>
                 </div>
               </div>
@@ -108,9 +93,7 @@
         <!-- Sección de evento destacado -->
         <section class="highlighted-event-section">
           <div class="highlighted-event-container">
-            <div class="highlighted-event-image"
-              style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80');">
-            </div>
+            <img class="highlighted-event-image" src="./assets/img/top_event.jpg">
             <div class="highlighted-event-info">
               <h3 class="highlighted-event-title">Evento Estrella: Gala Anual 2024</h3>
               <p class="highlighted-event-description">
@@ -124,9 +107,7 @@
         </section>
         <!-- Sección de eventos -->
         <h2 class="section-title">Upcoming Events</h2>
-        <div class="events-grid" id="events-grid">
-          <!-- Los eventos se cargarán dinámicamente aquí -->
-        </div>
+        <div class="events-grid" id="events-grid"></div>
 
         <h2 class="section-title">Contact Us</h2>
         <div class="contact-section">
@@ -177,7 +158,7 @@
           <div class="footer-subscribe-row">
             <input id="footer-subscribe-input" class="footer-subscribe-input" type="email"
               placeholder="Correo electrónico" required />
-            <button class="footer-subscribe-btn" type="submit">Suscribirme</button>
+            <button id="subscribe-btn" class="footer-subscribe-btn" type="button">Suscribirme</button>
           </div>
         </form>
         <div class="social-links">

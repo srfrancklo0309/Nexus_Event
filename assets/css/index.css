@@ -78,6 +78,7 @@
 
 .event-image {
   width: 100%;
+  object-fit: cover;
   aspect-ratio: 16/9;
   background-size: cover;
   background-position: center;
@@ -673,4 +674,25 @@
   letter-spacing: 0.04em;
   text-align: right;
   display: block;
+}
+
+/* Estilo para saludo de usuario en navbar */
+.navbar-user-greeting {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background: rgba(20, 20, 20, 0.85);
+  color: var(--text-white, #fff);
+  border: 1.5px solid var(--accent-red, #e10600);
+  border-radius: 0.7em;
+  padding: 0.4em 1.1em;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px #e1060033;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, color 0.2s;
+}
+.navbar-user-greeting i {
+  color: var(--accent-red, #e10600);
+  font-size: 1.1em;
 }
