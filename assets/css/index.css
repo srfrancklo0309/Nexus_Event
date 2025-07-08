@@ -226,6 +226,39 @@
   justify-content: center;
 }
 
+/* Estilos para mensajes del formulario */
+#formMessage {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+#formMessage:empty {
+  display: none;
+}
+
+/* Animación para campos de entrada */
+.contact-form .input:focus,
+.contact-form .textarea:focus {
+  border-color: var(--accent-red, #e10600);
+  box-shadow: 0 0 0 0.125em rgba(225, 6, 0, 0.25);
+}
+
+/* Estilo para botón de envío */
+.contact-form .button.is-primary {
+  background: var(--accent-red, #e10600);
+  border-color: var(--accent-red, #e10600);
+  transition: all 0.3s ease;
+}
+
+.contact-form .button.is-primary:hover {
+  background: var(--accent-red-hover, #ff3c28);
+  border-color: var(--accent-red-hover, #ff3c28);
+  transform: translateY(-1px);
+}
+
 @media (max-width: 900px) {
   .contact-section {
     flex-direction: column;

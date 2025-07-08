@@ -201,20 +201,20 @@
 
         <h2 class="section-title">Contact Us</h2>
         <div class="contact-section">
-          <form class="contact-form">
+          <form id="contactForm" class="contact-form">
             <div class="field">
               <div class="control">
-                <input class="input" type="text" placeholder="Nombres">
+                <input class="input" type="text" name="name" placeholder="Nombres" required>
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <input class="input" type="email" placeholder="Correo">
+                <input class="input" type="email" name="email" placeholder="Correo" required>
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <textarea class="textarea" placeholder="Mensaje"></textarea>
+                <textarea class="textarea" name="message" placeholder="Mensaje" required></textarea>
               </div>
             </div>
             <div class="field">
@@ -222,6 +222,7 @@
                 <button class="button is-primary" type="submit">Enviar</button>
               </div>
             </div>
+            <div id="formMessage" class="has-text-centered mt-3"></div>
           </form>
           <div class="contact-map">
             <iframe
@@ -288,6 +289,7 @@
     </footer>
   </div>
   <script src="./app.js" type="module"></script>
+  <script src="./scripts/contactForm.js" type="module"></script>
 </body>
 
 </html>
