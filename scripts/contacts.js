@@ -1,4 +1,5 @@
 import { getContacts } from '../api/contactAPI.js';
+import { loadToastNotifications } from './bulma.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const container = document.getElementById('contactsTableContainer');
@@ -29,6 +30,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   let allContacts = [];
   let filteredContacts = [];
+
+  const { createToast, showToast } = loadToastNotifications();
+  createToast();
 
   // Función para renderizar la tabla
   function renderTable(contacts) {
@@ -90,7 +94,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       filteredContacts = [...data];
       renderTable(data);
     } else {
-      container.innerHTML = '<p class="has-text-danger">Error al cargar contactos</p>';
+      showToast("Error", "Error al cargar contactos");
+      container.innerHTML = '';
     }
   }
 

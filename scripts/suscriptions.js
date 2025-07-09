@@ -1,4 +1,5 @@
 import { getSuscriptions, deleteSuscriptions } from "../api/suscriptionAPI.js";
+import { loadToastNotifications } from "./bulma.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     const userName = sessionStorage.getItem('name');
@@ -21,6 +22,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             window.location.href = "./login.html";
         });
     }
+
+    const { createToast, showToast } = loadToastNotifications();
+    createToast();
 
     await showSuscriptions();
 
@@ -54,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             cardSuscriptor.innerHTML = suscriptor;
         } catch (error) {
-            console.error(error);
+            showToast("Error", "Error al cargar suscripciones");
         }
     };
 
@@ -62,9 +66,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     deleteButtons.forEach(button => {
         button.addEventListener('click', async () => {
             const dataId = button.getAttribute('data-id');
-            console.log(dataId, typeof dataId);
-
-            await deleteSuscriptions(dataId);
+            try {
+                await deleteSuscriptions(dataId);
+                showToast("Éxito", "Suscripción eliminada correctamente");
+                await showSuscriptions();
+            } catch (error) {
+                showToast("Error", "Error al eliminar la suscripción");
+            }
         });
     });
 });

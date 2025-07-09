@@ -1,4 +1,5 @@
 import { getEvents, newEvent, updateEvent, deleteEvent } from "../api/eventAPI.js";
+import { loadToastNotifications } from "./bulma.js";
 
 // DOM Elements
 const eventsTable = document.getElementById("events-table");
@@ -24,6 +25,8 @@ const editEventArtist = document.getElementById("editEventArtist");
 const editEventStatus = document.getElementById("editEventStatus");
 
 const modalBackground = document.querySelector(".modal-background");
+
+const { createToast, showToast } = loadToastNotifications();
 
 let allEvents = [];
 
@@ -76,7 +79,7 @@ function showValidationErrors(errors) {
         errorMessage += "La fecha y hora del evento no pueden ser en el pasado.\n";
     }
     
-    alert(errorMessage);
+    showToast("Error de validación", errorMessage);
 }
 
 function showNewEventModal() {
@@ -178,12 +181,11 @@ async function loadEventDataForEdit(eventId) {
 
                 showEditEventModal();
             } else {
-                alert("Evento no encontrado");
+                showToast("Error", "Evento no encontrado");
             }
         }
     } catch (error) {
-        console.error("Error al cargar datos del evento:", error);
-        alert("Error al cargar los datos del evento");
+        showToast("Error", "Error al cargar los datos del evento");
     }
 }
 function initializeActionButtons() {
@@ -202,18 +204,16 @@ function initializeActionButtons() {
         button.addEventListener("click", async (e) => {
             e.preventDefault();
             const eventId = button.getAttribute("data-event-id");
-            console.log("Eliminar evento:", eventId);
             try {
                 const response = await deleteEvent(eventId);
                 if (response.status) {
-                    alert("Evento eliminado exitosamente");
+                    showToast("Éxito", "Evento eliminado exitosamente");
                     loadEvents();
                 } else {
-                    alert("Error al eliminar el evento: " + response.message);
+                    showToast("Error", "Error al eliminar el evento: " + response.message);
                 }
             } catch (error) {
-                console.error("Error al eliminar evento:", error);
-                alert("Error al eliminar el evento");
+                showToast("Error", "Error al eliminar el evento");
             }
         });
     });
@@ -256,15 +256,14 @@ async function handleNewEventFormSubmit(e) {
         const response = await newEvent(eventData);
 
         if (response.status) {
-            alert("Evento creado exitosamente");
+            showToast("Éxito", "Evento creado exitosamente");
             hideNewEventModal();
             loadEvents();
         } else {
-            alert("Error al crear el evento: " + response.message);
+            showToast("Error", "Error al crear el evento: " + response.message);
         }
     } catch (error) {
-        console.error("Error al crear evento:", error);
-        alert("Error al crear el evento");
+        showToast("Error", "Error al crear el evento");
     }
 }
 
@@ -306,15 +305,14 @@ async function handleEditEventFormSubmit(e) {
         const response = await updateEvent(eventData);
 
         if (response.status) {
-            alert("Evento actualizado exitosamente");
+            showToast("Éxito", "Evento actualizado exitosamente");
             hideEditEventModal();
             loadEvents();
         } else {
-            alert("Error al actualizar el evento: " + response.message);
+            showToast("Error", "Error al actualizar el evento: " + response.message);
         }
     } catch (error) {
-        console.error("Error al actualizar evento:", error);
-        alert("Error al actualizar el evento");
+        showToast("Error", "Error al actualizar el evento");
     }
 }
 
@@ -408,5 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+    
+    createToast();
 });
 
