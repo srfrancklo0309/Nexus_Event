@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     welcomeMessage.textContent = `Welcome back, ${userName}`;
   }
   
-  // Event listener para el botón de logout
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", (e) => {
@@ -35,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const { createToast, showToast } = loadToastNotifications();
   createToast();
 
-  // Función para renderizar la tabla
+  // Renderiza la tabla de contactos con los datos proporcionados
   function renderTable(contacts) {
     if (!contacts || contacts.length === 0) {
       contactsTable.innerHTML = '<tr><td colspan="4" class="has-text-centered">No hay contactos guardados.</td></tr>';
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initializeActionButtons();
   }
 
-  // Función para inicializar los botones de acción
+  // Configura los eventos de los botones de acción
   function initializeActionButtons() {
     const deleteButtons = document.querySelectorAll(".delete-link");
 
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Función para filtrar contactos por email
+  // Filtra contactos por nombre o email
   function filterContacts(searchTerm) {
     if (!searchTerm) {
       filteredContacts = [...allContacts];
@@ -101,14 +100,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderTable(filteredContacts);
   }
 
-  // Event listeners
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       filterContacts(e.target.value);
     });
   }
 
-  // Obtener contactos de la API
+  // Carga los contactos desde la API
   async function loadContacts() {
     contactsTable.innerHTML = '<tr><td colspan="4" class="has-text-centered">Cargando contactos...</td></tr>';
     const { status, data } = await getContacts();
@@ -122,6 +120,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Inicializar
   loadContacts();
 }); 

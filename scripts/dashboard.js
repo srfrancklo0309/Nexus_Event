@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const { createToast, showToast } = loadToastNotifications();
   createToast();
 
+  // Carga y muestra el contador de eventos por estado
   async function loadEventsCounter() {
     try {
       const { data: events } = await getEvents();
@@ -55,6 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  // Carga y muestra el contador de mensajes de contacto
   async function loadContactsCounter() {
     try {
       const {data : contacts} = await getContacts();
@@ -70,6 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  // Carga y muestra el contador de suscripciones
   async function loadSuscriptionsCounter() {
   try {
     const {data : suscriptions} = await getSuscriptions();

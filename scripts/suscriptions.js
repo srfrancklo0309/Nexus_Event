@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await showSuscriptions();
 
+    // Carga y muestra todas las suscripciones
     async function showSuscriptions() {
         try {
             const { data: suscriptions } = await getSuscriptions();

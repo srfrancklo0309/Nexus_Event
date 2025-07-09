@@ -1,7 +1,6 @@
 import { getEvents, newEvent, updateEvent, deleteEvent } from "../api/eventAPI.js";
 import { loadToastNotifications } from "./bulma.js";
 
-// DOM Elements
 const eventsTable = document.getElementById("events-table");
 const newEventBtn = document.querySelector(".new-event-btn");
 const newEventModal = document.getElementById("newEventModal");
@@ -30,6 +29,7 @@ const { createToast, showToast } = loadToastNotifications();
 
 let allEvents = [];
 
+// Valida que todos los campos requeridos estén completos
 function validateRequiredFields(formData) {
     const requiredFields = ['name', 'description', 'date', 'time', 'location', 'capacity', 'price', 'genre', 'artist'];
     const emptyFields = [];
@@ -44,6 +44,7 @@ function validateRequiredFields(formData) {
     return emptyFields;
 }
 
+// Valida que la fecha del evento no sea en el pasado
 function validateDate(dateString, timeString) {
     const selectedDateTime = new Date(`${dateString}T${timeString}`);
     const currentDateTime = new Date();
@@ -53,6 +54,7 @@ function validateDate(dateString, timeString) {
     return selectedDateTime > currentDateTime;
 }
 
+// Muestra errores de validación en un toast
 function showValidationErrors(errors) {
     let errorMessage = "Por favor corrige los siguientes errores:\n\n";
     
@@ -82,6 +84,7 @@ function showValidationErrors(errors) {
     showToast("Error de validación", errorMessage);
 }
 
+// Muestra el modal para crear nuevo evento
 function showNewEventModal() {
     newEventModal.classList.add("show");
     document.body.style.overflow = "hidden";
@@ -91,11 +94,14 @@ function showNewEventModal() {
     eventDateInput.min = today;
 }
 
+// Oculta el modal de nuevo evento
 function hideNewEventModal() {
     newEventModal.classList.remove("show");
     document.body.style.overflow = "";
     newEventForm.reset();
 }
+
+// Muestra el modal para editar evento
 function showEditEventModal() {
     editEventModal.classList.add("show");
     document.body.style.overflow = "hidden";
@@ -105,12 +111,14 @@ function showEditEventModal() {
     editEventDateInput.min = today;
 }
 
+// Oculta el modal de editar evento
 function hideEditEventModal() {
     editEventModal.classList.remove("show");
     document.body.style.overflow = "";
     editEventForm.reset();
 }
 
+// Carga todos los eventos desde la API
 async function loadEvents() {
     try {
         const response = await getEvents();
@@ -125,6 +133,7 @@ async function loadEvents() {
     }
 }
 
+// Filtra eventos por estado y los renderiza
 function filterEventsByStatus(status) {
     const filteredEvents = allEvents.filter(event => event.status === status);
     
@@ -158,7 +167,7 @@ function filterEventsByStatus(status) {
     initializeActionButtons();
 }
 
-
+// Carga los datos de un evento para editar
 async function loadEventDataForEdit(eventId) {
     try {
         const response = await getEvents();
@@ -188,6 +197,8 @@ async function loadEventDataForEdit(eventId) {
         showToast("Error", "Error al cargar los datos del evento");
     }
 }
+
+// Configura los eventos de los botones de acción
 function initializeActionButtons() {
     const editButtons = document.querySelectorAll(".edit-link");
     const deleteButtons = document.querySelectorAll(".delete-link");
@@ -219,6 +230,7 @@ function initializeActionButtons() {
     });
 }
 
+// Maneja el envío del formulario de nuevo evento
 async function handleNewEventFormSubmit(e) {
     e.preventDefault();
 
@@ -267,6 +279,7 @@ async function handleNewEventFormSubmit(e) {
     }
 }
 
+// Maneja el envío del formulario de editar evento
 async function handleEditEventFormSubmit(e) {
     e.preventDefault();
 
@@ -316,6 +329,7 @@ async function handleEditEventFormSubmit(e) {
     }
 }
 
+// Configura la funcionalidad de búsqueda
 function initializeSearch() {
     const searchInput = document.querySelector(".search-input");
 
@@ -334,6 +348,7 @@ function initializeSearch() {
     });
 }
 
+// Configura las pestañas de filtrado por estado
 function initializeTabs() {
     const tabLinks = document.querySelectorAll(".tab-link");
 
