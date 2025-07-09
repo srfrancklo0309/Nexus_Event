@@ -1,4 +1,5 @@
 import { getContacts } from '../api/contactAPI.js';
+
 import { loadToastNotifications } from './bulma.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
