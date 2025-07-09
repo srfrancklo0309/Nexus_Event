@@ -3,27 +3,29 @@ import { getContacts, deleteContact } from '../api/contactAPI.js';
 import { loadToastNotifications } from './bulma.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const contactsTable = document.getElementById('contacts-table');
-  const searchInput = document.querySelector('.search-input');
-  
-  const userName = sessionStorage.getItem('name');
-
-  if (!userName) {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (!user || !user.name) {
     window.location.href = "./login.html";
     return;
   }
+  if (!user.admin) {
+    window.location.href = "../index.html";
+    return;
+  }
 
+  const contactsTable = document.getElementById('contacts-table');
+  const searchInput = document.querySelector('.search-input');
+  
   const welcomeMessage = document.getElementById("welcomeMessage");
   if (welcomeMessage) {
-    welcomeMessage.textContent = `Welcome back, ${userName}`;
+    welcomeMessage.textContent = `Welcome back, ${user.name}`;
   }
   
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      
-      sessionStorage.clear();
+      localStorage.removeItem('user');
       window.location.href = "./login.html";
     });
   }

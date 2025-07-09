@@ -25,16 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Verifica si el usuario tiene permisos de administrador
-    function isAdmin(username, users) {
-        const user = users.find(user => user.username === username);
-        
-        if (user) {
-            return user.admin;
-        }
-        return false;
-    }
-    
     // Verifica que los campos no estén vacíos
     function isFieldEmpty() {
         if (username.value === '' || password.value === '') {
@@ -53,14 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!isFieldEmpty()) {
                 if (validateLogin(users, usernameValue, passwordValue)) {
-                    if (isAdmin(usernameValue, users)) {
+                    const user = users.find(user => user.username === usernameValue);
+                    const userObj = {
+                        id: user.id,
+                        name: user.name,
+                        username: user.username,
+                        email: user.email,
+                        admin: user.admin
+                    };
+                    localStorage.setItem('user', JSON.stringify(userObj));
+                    if (user.admin) {
                         window.location.href = '../pages/dashboard.html';
-                        sessionStorage.setItem('username',usernameValue);
-                        sessionStorage.setItem('name',users.find(user => user.username === usernameValue).name)
                     } else {
                         window.location.href = '../index.html';
-                        sessionStorage.setItem('username', usernameValue);
-                        sessionStorage.setItem('name',users.find(user => user.username === usernameValue).name);
                     }
                 }
             }
