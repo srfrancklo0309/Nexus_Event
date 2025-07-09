@@ -136,12 +136,10 @@ export function loadToastNotifications() {
       <p class="notification-message">${message}</p>
     `;
     notificationToast.classList.add('active');
-    // notificationToast.style.display = 'block';
     setTimeout(() => {
       if (notificationToast.classList.contains('active')) {
         notificationToast.classList.remove('active');
       }
-      // notificationToast.style.display = 'none';
     }, duration);
   }
 
