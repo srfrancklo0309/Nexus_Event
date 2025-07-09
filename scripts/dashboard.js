@@ -1,30 +1,33 @@
 import { getEvents } from "../api/eventAPI.js";
 import { getContacts } from "../api/contactAPI.js";
 import { getSuscriptions } from "../api/suscriptionAPI.js";
+import { loadToastNotifications } from "./bulma.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  
-  // Obtener el nombre del usuario desde sessionStorage
-  const userName = sessionStorage.getItem('name') || 'Admin';
+  const userName = sessionStorage.getItem('name');
+
+  if (!userName) {
+    window.location.href = "./login.html";
+    return;
+  }
+
   const welcomeMessage = document.getElementById("welcomeMessage");
   if (welcomeMessage) {
     welcomeMessage.textContent = `Welcome back, ${userName}`;
   }
   
-  // Event listener para el botón de logout
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      
-      // Limpiar session storage
       sessionStorage.clear();
-      
-      // Redirigir al login
       window.location.href = "./login.html";
     });
   }
   
+  const { createToast, showToast } = loadToastNotifications();
+  createToast();
+
   async function loadEventsCounter() {
     try {
       const { data: events } = await getEvents();
@@ -48,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <p class="stat-label">Canceled Events</p>
         <p class="stat-value">${canceledCount}</p>`;
     } catch (error) {
-      console.error(error);
+      showToast("Error", "Error al cargar eventos");
     }
   }
 
@@ -63,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <p class="stat-label recent-activity-cards">Messages</p>
         <p class="stat-value">${contactsCounter}</p>`;
     } catch (error) {
-      console.log(error);
+      showToast("Error", "Error al cargar mensajes de contacto");
     }
   }
 
@@ -78,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <p class="stat-label recent-activity-cards">Suscriptions</p>
       <p class="stat-value">${suscriptionsCounter}</p>`;
   } catch (error) {
-    console.log(error);
+    showToast("Error", "Error al cargar suscripciones");
   }
   }
 

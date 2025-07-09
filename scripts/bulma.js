@@ -111,3 +111,42 @@ export function loadVideos(videosID) {
     });
   });
 }
+
+export function loadToastNotifications() {
+
+  function createToast() {
+    const notificationToast = document.createElement('div');
+    notificationToast.className = 'notification-toast';
+
+    document.body.prepend(notificationToast);
+  }
+
+  function showToast(title, message, duration = 3000) {
+    const notificationToast = document.querySelector('.notification-toast');
+
+    if (!notificationToast) {
+      throw new Error("No se ha creado la caja de notificaciones en el DOM.");
+    }
+
+    notificationToast.innerHTML = `
+      <div class="notification-header">
+          <h4 class="notification-title">${title}</h4>
+          <button class="notification-close">&times;</button>
+      </div>
+      <p class="notification-message">${message}</p>
+    `;
+    notificationToast.classList.add('active');
+    // notificationToast.style.display = 'block';
+    setTimeout(() => {
+      if (notificationToast.classList.contains('active')) {
+        notificationToast.classList.remove('active');
+      }
+      // notificationToast.style.display = 'none';
+    }, duration);
+  }
+
+  return {
+    createToast,
+    showToast
+  }
+}

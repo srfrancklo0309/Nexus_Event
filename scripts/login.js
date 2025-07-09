@@ -1,103 +1,91 @@
 import { getUsers } from '../api/userAPI.js';
 
-const loginButton = document.getElementById('login-button');
-const username = document.getElementById('username');
-const password = document.getElementById('password');
-const notificationToast = document.getElementById('notification-toast');
+import { loadToastNotifications } from './bulma.js';
 
-function validateLogin(users, username, password) {
-    console.log('Validando con datos:', { username, password });
-    console.log('Usuarios disponibles:', users);
+document.addEventListener('DOMContentLoaded', () => {
+    const loginButton = document.getElementById('login-button');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
 
-    const user = users.find(user => 
-        user.username === username && user.password === password
-    );
+    const { createToast, showToast } = loadToastNotifications();
+
+    createToast();
     
-    console.log('Usuario encontrado:', user);
+    function validateLogin(users, username, password) {
+        console.log('Validando con datos:', { username, password });
+        console.log('Usuarios disponibles:', users);
     
-    if (user) {
-        return true;
-    } else {
-        notificationToast.innerHTML = `
-            <div class="notification-header">
-                <h4 class="notification-title">Error in login</h4>
-                <button class="notification-close">&times;</button>
-            </div>
-            <p class="notification-message">Invalid username or password</p>
-        `;
-        notificationToast.style.display = 'block';
-        setTimeout(() => {
-            notificationToast.style.display = 'none';
-        }, 3000);
+        const user = users.find(user => 
+            user.username === username && user.password === password
+        );
+        
+        console.log('Usuario encontrado:', user);
+        
+        if (user) {
+            return true;
+        } else {
+            showToast("Error in login", "Invalid username or password");
+            return false;
+        }
+    }
+    
+    function isAdmin(username, users) {
+        console.log('Verificando si es admin:', { username });
+        const user = users.find(user => user.username === username);
+        
+        console.log('Usuario para verificar admin:', user);
+        
+        if (user) {
+            console.log('Es admin:', user.admin);
+            return user.admin;
+        }
         return false;
     }
-}
-
-function isAdmin(username, users) {
-    console.log('Verificando si es admin:', { username });
-    const user = users.find(user => user.username === username);
     
-    console.log('Usuario para verificar admin:', user);
+    function isFieldEmpty() {
+        if (username.value === '' || password.value === '') {
+            showToast("Error in login", "Please fill in all fields");
+            return true;
+        }
+        return false;
+    }
     
-    if (user) {
-        console.log('Es admin:', user.admin);
-        return user.admin;
-    }
-    return false;
-}
-
-function isFieldEmpty() {
-    if (username.value === '' || password.value === '') {
-        notificationToast.innerHTML = `
-            <div class="notification-header">
-                <h4 class="notification-title">Error in login</h4>
-                <button class="notification-close">&times;</button>
-            </div>
-            <p class="notification-message">Please fill in all fields</p>
-        `;
-        notificationToast.style.display = 'block';
-        setTimeout(() => {
-            notificationToast.style.display = 'none';
-        }, 3000);
-        return true;
-    }
-    return false;
-}
-
-loginButton.addEventListener('click', async () => {
-    try {
-        const { data: users } = await getUsers();
-        
-        console.log('Usuarios cargados:', users);
-        
-        const usernameValue = username.value;
-        const passwordValue = password.value;
-        console.log('Credenciales ingresadas:', { username: usernameValue, password: passwordValue });
-
-        if (!isFieldEmpty()) {
-            console.log('Campos no están vacíos, validando credenciales...');
+    loginButton.addEventListener('click', async () => {
+        try {
+            const { data: users } = await getUsers();
             
-            if (validateLogin(users, usernameValue, passwordValue)) {
-                console.log('Credenciales válidas, verificando si es admin...');
+            console.log('Usuarios cargados:', users);
+            
+            const usernameValue = username.value;
+            const passwordValue = password.value;
+            console.log('Credenciales ingresadas:', { username: usernameValue, password: passwordValue });
+    
+            if (!isFieldEmpty()) {
+                console.log('Campos no están vacíos, validando credenciales...');
                 
-                if (isAdmin(usernameValue, users)) {
-                    console.log('Usuario es admin, redirigiendo a dashboard...');
-                    window.location.href = '../pages/dashboard.html';
-                    sessionStorage.setItem('username',usernameValue);
-                    sessionStorage.setItem('name',users.find(user => user.username === usernameValue).name)
+                if (validateLogin(users, usernameValue, passwordValue)) {
+                    console.log('Credenciales válidas, verificando si es admin...');
+                    
+                    if (isAdmin(usernameValue, users)) {
+                        console.log('Usuario es admin, redirigiendo a dashboard...');
+                        window.location.href = '../pages/dashboard.html';
+                        sessionStorage.setItem('username',usernameValue);
+                        sessionStorage.setItem('name',users.find(user => user.username === usernameValue).name)
+                    } else {
+                        console.log('Usuario no es admin, redirigiendo a events...');
+                        window.location.href = '../index.html';
+                        sessionStorage.setItem('username', usernameValue);
+                        sessionStorage.setItem('name',users.find(user => user.username === usernameValue).name);
+                    }
                 } else {
-                    console.log('Usuario no es admin, redirigiendo a events...');
-                    window.location.href = '../index.html';
-                    sessionStorage.setItem('username', usernameValue);
-                    sessionStorage.setItem('name',users.find(user => user.username === usernameValue).name);
+                    console.log('Credenciales inválidas');
                 }
             } else {
-                console.log('Credenciales inválidas');
+                console.log('Campos están vacíos');
             }
-        } else {
-            console.log('Campos están vacíos');
+        } catch (error) {
+            console.error('Error en el login:', error);
         }
-    } catch (error) {
-        console.error('Error en el login:', error);
-    }
+    });
 });
+

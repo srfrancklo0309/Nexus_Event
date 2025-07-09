@@ -1,6 +1,7 @@
-import { initCarousel, loadVideos } from './scripts/bulma.js';
+import { initCarousel, loadVideos, loadToastNotifications } from './scripts/bulma.js';
 import { getEvents } from './api/eventAPI.js';
 import { newSuscription } from './api/suscriptionAPI.js';
+import { newContact } from './api/contactAPI.js';
 
 async function loadEvents () {
   const eventsGrid = document.getElementById('events-grid');
@@ -99,6 +100,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadEvents();
   loadVideos('event-image-video');
   loggedUser();
+  const { createToast, showToast } = loadToastNotifications();
+  createToast();
 
   const suscribeButton = document.getElementById('subscribe-btn');
 
@@ -110,8 +113,31 @@ document.addEventListener('DOMContentLoaded', async () => {
       const suscription = { email };
       const response = await newSuscription(suscription);
       if( response && response.status) {
-        console.log("Suscrito correctamente.");
+        showToast("Éxito", "Suscrito correctamente.");
       }
     }
   });
+
+  // Integración del formulario de contacto
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = contactForm.querySelector('input[type="text"]').value.trim();
+      const email = contactForm.querySelector('input[type="email"]').value.trim();
+      const message = contactForm.querySelector('textarea').value.trim();
+      if (!name || !email || !message) {
+        showToast("Error", "Por favor completa todos los campos.");
+        return;
+      }
+      const contact = { name, email, message };
+      const response = await newContact(contact);
+      if (response && response.status) {
+        showToast("Éxito", "Mensaje enviado correctamente.");
+        contactForm.reset();
+      } else {
+        showToast("Error", response && response.message ? response.message : "No se pudo enviar el mensaje.");
+      }
+    });
+  }
 });
