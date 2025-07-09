@@ -21,27 +21,56 @@ Basado en los requerimientos del cliente, el sistema debe permitir:
 ```
 nexusEvent/
 ├── assets/
-│   ├── css/
-│   │   ├── common.css          # Estilos compartidos
+│   ├── css/                # Hojas de estilos CSS para cada sección y estilos comunes
+│   │   ├── common.css          # Estilos compartidos globales
 │   │   ├── index.css           # Estilos de la página principal
 │   │   ├── login.css           # Estilos del login
 │   │   ├── dashboard.css       # Estilos del panel administrativo
 │   │   ├── events.css          # Estilos de gestión de eventos
 │   │   ├── suscriptions.css    # Estilos de suscripciones
 │   │   └── contacts.css        # Estilos de contactos
-│   └── db/
-│       └── db.json             # Base de datos JSON (JSON Server)
-├── pages/
+│   ├── db/
+│   │   └── db.json             # Base de datos JSON (JSON Server)
+│   ├── fonts/                  # Fuentes personalizadas utilizadas en la app
+│   │   └── UnZialish.ttf
+│   ├── img/                    # Imágenes de eventos, logos y recursos gráficos
+│   │   ├── logo.png
+│   │   ├── logo-transparent.png
+│   │   ├── pagina-icono1.png
+│   │   ├── top_event.jpg
+│   │   ├── event_1.jpg
+│   │   ├── event_2.jpg
+│   │   └── event_3.jpg
+│   └── videos/                 # Videos promocionales o de eventos
+│       ├── event_1.mp4
+│       ├── event_2.mp4
+│       ├── event_3.mp4
+│       ├── event_4.mp4
+│       ├── event_5.mp4
+│       └── event_6.mp4
+├── api/                        # Módulos de acceso a la API simulada (JSON Server)
+│   ├── API.js                  # Configuración base de la API
+│   ├── userAPI.js              # Funciones para usuarios
+│   ├── contactAPI.js           # Funciones para contactos
+│   ├── suscriptionAPI.js       # Funciones para suscripciones
+│   └── eventAPI.js             # Funciones para eventos
+├── pages/                      # Páginas HTML del sistema
 │   ├── login.html              # Página de autenticación
 │   ├── dashboard.html          # Panel administrativo principal
 │   ├── events.html             # Gestión de eventos
 │   ├── suscriptions.html       # Gestión de suscripciones
 │   └── contacts.html           # Gestión de mensajes de contacto
-├── scripts/
-│   └── bulma.js                # Funcionalidades JavaScript (carrusel, etc.)
+├── scripts/                    # Funcionalidades JavaScript para cada sección
+│   ├── bulma.js                # Funciones comunes y de UI (carrusel, etc.)
+│   ├── dashboard.js            # Lógica del dashboard admin
+│   ├── events.js               # Lógica de gestión de eventos
+│   ├── suscriptions.js         # Lógica de gestión de suscripciones
+│   ├── contacts.js             # Lógica de gestión de contactos
+│   └── login.js                # Lógica de autenticación
 ├── index.html                  # Página principal (landing page)
 ├── app.js                      # Archivo principal de JavaScript
-├── package.json                # Configuración del proyecto
+├── package.json                # Configuración del proyecto y scripts npm
+├── package-lock.json           # Detalle de dependencias instaladas
 └── README.md                   # Documentación del proyecto
 ```
 
