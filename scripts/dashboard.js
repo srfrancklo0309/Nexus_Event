@@ -4,23 +4,26 @@ import { getSuscriptions } from "../api/suscriptionAPI.js";
 import { loadToastNotifications } from "./bulma.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const userName = sessionStorage.getItem('name');
-
-  if (!userName) {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (!user || !user.name) {
     window.location.href = "./login.html";
+    return;
+  }
+  if (!user.admin) {
+    window.location.href = "../index.html";
     return;
   }
 
   const welcomeMessage = document.getElementById("welcomeMessage");
   if (welcomeMessage) {
-    welcomeMessage.textContent = `Welcome back, ${userName}`;
+    welcomeMessage.textContent = `Welcome back, ${user.name}`;
   }
   
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      sessionStorage.clear();
+      localStorage.removeItem('user');
       window.location.href = "./login.html";
     });
   }
@@ -28,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const { createToast, showToast } = loadToastNotifications();
   createToast();
 
+  // Carga y muestra el contador de eventos por estado
   async function loadEventsCounter() {
     try {
       const { data: events } = await getEvents();
@@ -55,6 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  // Carga y muestra el contador de mensajes de contacto
   async function loadContactsCounter() {
     try {
       const {data : contacts} = await getContacts();
@@ -70,6 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  // Carga y muestra el contador de suscripciones
   async function loadSuscriptionsCounter() {
   try {
     const {data : suscriptions} = await getSuscriptions();

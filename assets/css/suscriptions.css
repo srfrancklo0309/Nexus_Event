@@ -146,6 +146,28 @@
   box-shadow: 0 4px 16px #ff3c2833;
 }
 
+/* Centrar y limitar el ancho cuando hay solo una suscripción */
+.subscriptions-grid:has(.subscription-card:only-child) {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.subscriptions-grid .subscription-card {
+  max-width: 600px;
+  margin-right: auto;
+  width: 100%;
+}
+
+.subscription-info {
+  align-items: center;
+  text-align: center;
+}
+
+.subscription-details {
+  justify-content: center;
+  width: 100%;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .page-header {

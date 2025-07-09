@@ -3,6 +3,7 @@ import { getEvents } from './api/eventAPI.js';
 import { newSuscription } from './api/suscriptionAPI.js';
 import { newContact } from './api/contactAPI.js';
 
+// Carga y muestra los eventos en la página principal
 async function loadEvents () {
   const eventsGrid = document.getElementById('events-grid');
   
@@ -47,18 +48,20 @@ async function loadEvents () {
   });
 }
 
+// Configura la interfaz según el estado de autenticación del usuario
 function loggedUser () {
   const navbarMenu = document.querySelector('.navbar-menu');
-  const user = sessionStorage.getItem('name');
+  const user = JSON.parse(localStorage.getItem('user'));
   let template = document.createElement('div');
   template.className = 'navbar-end';
 
-  if (user !== null) {
+  if (user !== null && user) {
     template.innerHTML = `
       <div class="navbar-item" style="gap: 0.7em;">
+        ${user.admin ? `<a href="./pages/dashboard.html" class="button is-primary" id="admin-panel-btn" style="margin-right: 0.5em;"><i class="fas fa-cogs" style="margin-right: 0.5em;"></i> Panel de control</a>` : ''}
         <span class="navbar-user-greeting">
           <i class="fas fa-user"></i>
-          Welcome, ${user}
+          Welcome, ${user.name}
         </span>
         <a href="#" id="logout-btn" class="nav-item logout-btn" style="padding: 0.5em 1em; margin: 0; border-top: none;">
           <span class="nav-icon">
@@ -82,12 +85,12 @@ function loggedUser () {
   }
   navbarMenu.appendChild(template);
 
-  if (user !== null) {
+  if (user !== null && user) {
     const logoutBtn = template.querySelector('#logout-btn');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        sessionStorage.clear();
+        localStorage.removeItem('user');
         location.reload();
       });
     }
@@ -118,7 +121,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Integración del formulario de contacto
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {

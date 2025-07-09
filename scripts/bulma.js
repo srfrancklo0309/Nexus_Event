@@ -1,5 +1,5 @@
+// Inicializa el carrusel de imágenes con navegación automática
 export function initCarousel() {
-  // Carrusel elements
   const slides = document.querySelectorAll('.carousel-slide');
   const dots = document.querySelectorAll('.dot');
   const leftArrow = document.querySelector('.carousel-arrow.left');
@@ -7,9 +7,10 @@ export function initCarousel() {
   const carouselContainer = document.querySelector('.carousel-container');
 
   let currentSlide = 0;
-  const slideInterval = 8000; // 7 segundos entre cada cambio
+  const slideInterval = 8000;
   let autoSlideInterval = null;
 
+  // Muestra la diapositiva especificada
   function showSlide(index) {
     slides.forEach(slide => {
       slide.classList.remove('active');
@@ -21,16 +22,19 @@ export function initCarousel() {
     dots[index].classList.add('active');
   }
 
+  // Avanza a la siguiente diapositiva
   function nextSlide() {
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
   }
 
+  // Retrocede a la diapositiva anterior
   function prevSlide() {
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     showSlide(currentSlide);
   }
 
+  // Reinicia el intervalo de navegación automática
   function resetAutoSlideInterval() {
     if (autoSlideInterval) {
       clearInterval(autoSlideInterval);
@@ -39,7 +43,6 @@ export function initCarousel() {
     autoSlideInterval = setInterval(nextSlide, slideInterval);
   }
 
-  // Inicializar el intervalo solo una vez
   resetAutoSlideInterval();
 
   dots.forEach((dot, index) => {
@@ -50,8 +53,6 @@ export function initCarousel() {
     });
   });
 
-  // AddEventListeners
-  // Sliding control
   carouselContainer.addEventListener('mouseenter', () => {
     if (autoSlideInterval) {
       clearInterval(autoSlideInterval);
@@ -63,7 +64,6 @@ export function initCarousel() {
     resetAutoSlideInterval();
   });
 
-  // Row navigations
   leftArrow.addEventListener('click', () => {
     prevSlide();
     resetAutoSlideInterval();
@@ -75,9 +75,11 @@ export function initCarousel() {
   });
 }
 
+// Configura la reproducción automática de videos al hacer hover
 export function loadVideos(videosID) {
   const videos = document.querySelectorAll(`.${videosID}`);
   
+  // Pausa todos los videos excepto el actual
   function pauseVideos(currentVideo) {
     videos.forEach(video => {
       video.pause();
@@ -112,8 +114,10 @@ export function loadVideos(videosID) {
   });
 }
 
+// Sistema de notificaciones toast
 export function loadToastNotifications() {
 
+  // Crea el contenedor de notificaciones
   function createToast() {
     const notificationToast = document.createElement('div');
     notificationToast.className = 'notification-toast';
@@ -121,6 +125,7 @@ export function loadToastNotifications() {
     document.body.prepend(notificationToast);
   }
 
+  // Muestra una notificación toast
   function showToast(title, message, duration = 3000) {
     const notificationToast = document.querySelector('.notification-toast');
 
@@ -136,12 +141,10 @@ export function loadToastNotifications() {
       <p class="notification-message">${message}</p>
     `;
     notificationToast.classList.add('active');
-    // notificationToast.style.display = 'block';
     setTimeout(() => {
       if (notificationToast.classList.contains('active')) {
         notificationToast.classList.remove('active');
       }
-      // notificationToast.style.display = 'none';
     }, duration);
   }
 
