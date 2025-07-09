@@ -1,4 +1,4 @@
-import { getData } from "./API.js";
+import { getData, createData } from "./API.js";
 
 const ENDPOINT = "contacts";
 
@@ -9,8 +9,18 @@ const getContacts = async () => {
   } catch (error) {
     return { status: false, message: error };
   }
-}
+};
+
+const newContact = async (contact) => {
+  try {
+    await createData(ENDPOINT, contact);
+    return { status: true, message: "Contacto creado exitosamente" };
+  } catch (error) {
+    return { status: false, message: error };
+  }
+};
 
 export {
-  getContacts
+  getContacts,
+  newContact
 }
