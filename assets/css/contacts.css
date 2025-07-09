@@ -40,6 +40,71 @@
   background-color: var(--accent-red, #e10600);
 }
 
+/* Estilos para los headers de la tabla de contactos */
+.contact-name-header {
+  width: 300px;
+}
+
+.contact-email-header {
+  width: 300px;
+}
+
+.contact-message-header {
+  width: 400px;
+}
+
+.contact-actions-header {
+  width: 120px;
+  text-align: center !important;
+  color: var(--text-muted);
+}
+
+/* Estilos para los botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.action-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.delete-link {
+  color: #f14668; /* Rojo de Bulma */
+}
+
+.delete-link:hover {
+  background-color: #fff5f5;
+  border-color: #f14668;
+  color: #e0326b;
+}
+
+/* Responsive para botones de acción */
+@media (max-width: 768px) {
+  .action-buttons {
+    gap: 8px;
+  }
+  
+  .action-link {
+    padding: 6px;
+  }
+}
+
 /* Animación para la tabla */
 .table-container {
   animation: fadeIn 0.5s ease-in-out;

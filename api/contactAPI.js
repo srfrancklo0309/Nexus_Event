@@ -1,4 +1,4 @@
-import { getData, createData } from "./API.js";
+import { getData, createData, deleteData } from "./API.js";
 
 const ENDPOINT = "contacts";
 
@@ -20,7 +20,17 @@ const newContact = async (contact) => {
   }
 };
 
+const deleteContact = async (id) => {
+  try {
+    await deleteData(ENDPOINT, id);
+    return { status: true, message: "Contacto eliminado exitosamente" };
+  } catch (error) {
+    return { status: false, message: error };
+  }
+};
+
 export {
   getContacts,
-  newContact
+  newContact,
+  deleteContact
 }
