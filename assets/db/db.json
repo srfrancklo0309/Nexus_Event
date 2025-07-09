@@ -175,76 +175,10 @@
   ],
   "contacts": [
     {
-      "name": "Juan Pérez",
-      "email": "juan.perez@email.com",
-      "message": "Me gustaría recibir más información sobre los eventos.",
-      "id": "11ca"
-    },
-    {
-      "name": "María García",
-      "email": "maria.garcia@email.com",
-      "message": "¿Hay descuentos para grupos grandes?",
-      "id": "83f0"
-    },
-    {
-      "name": "Carlos López",
-      "email": "carlos.lopez@email.com",
-      "message": "¿Puedo llevar a mi familia al evento?",
-      "id": "fc24"
-    },
-    {
-      "name": "Ana Torres",
-      "email": "ana.torres@email.com",
-      "message": "¿Cuándo será el próximo festival?",
-      "id": "3b26"
-    },
-    {
-      "name": "Luis Fernández",
-      "email": "luis.fernandez@email.com",
-      "message": "Estoy interesado en ser voluntario.",
-      "id": "9063"
-    },
-    {
-      "name": "Sofía Ramírez",
-      "email": "sofia.ramirez@email.com",
-      "message": "¿Dónde puedo comprar entradas?",
-      "id": "e297"
-    },
-    {
-      "name": "Miguel Sánchez",
-      "email": "miguel.sanchez@email.com",
-      "message": "¿Habrá estacionamiento disponible?",
-      "id": "7498"
-    },
-    {
-      "name": "Lucía Gómez",
-      "email": "lucia.gomez@email.com",
-      "message": "¿Puedo cambiar mi entrada de fecha?",
-      "id": "900e"
-    },
-    {
-      "name": "Diego Herrera",
-      "email": "diego.herrera@email.com",
-      "message": "¿Qué artistas estarán presentes?",
-      "id": "47d3"
-    },
-    {
-      "name": "Valentina Ruiz",
-      "email": "valentina.ruiz@email.com",
-      "message": "¿El evento es apto para niños?",
-      "id": "5a63"
-    },
-    {
-      "id": "5353",
-      "name": "el putas",
-      "email": "elputas@gmail.com",
-      "message": "asdasdasdasda"
-    },
-    {
-      "id": "6e69",
-      "name": "el putas",
-      "email": "elputas@gmail.com",
-      "message": "sdasdadassdasdasdasda"
+      "id": "bf9d",
+      "name": "Mateo",
+      "email": "test@test.com",
+      "message": "132dawdwa"
     }
   ]
 }
